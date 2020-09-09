@@ -20,15 +20,18 @@
 
 
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
+            <div class="col-sm-4">
                 <div class="create_group">
-        <div class="formInputArea">
-            <input placeholder="Group Name" #groupName  ([ngModal])="groupName" type="text" id="firstName">
-            <label for="name">Group Name<span class="imp_star">*</span></label>
-            <img src="assets/img/icon/user.png" alt="" class="input_icon">
-        </div>
-        <button class="btn" (click)="createGroup(groupName.value)" >Create</button>
-    </div>
+                    <div class="formInputArea">
+                        <input placeholder="Group Name" #groupName  ([ngModal])="groupName" type="text" id="firstName">
+                        <label for="name">Group Name<span class="imp_star">*</span></label>
+                        <img src="assets/img/icon/user.png" alt="" class="input_icon">
+                    </div>
+                    <button class="btn" (click)="createGroup(groupName.value)" >Create</button>
+                </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-4">
+               
     
     <div class="sel_m2">
         <label for="">Select Group To Add Contacts</label>
@@ -38,47 +41,60 @@
         </select>
     </div>
 
-    <div class="custom-upload file_s1">
-        <label for="">File upload</label>
-        <input type="file"  (change)="OnSelectedFile($event)" >
-        <div class="fake-file">
-            <input disabled="disabled" >
+  
+   
+    </div>
+
+
+    <div class="col-sm-4">
+        <div class="custom-upload file_s1">
+            <label for="">File upload</label>
+            <input type="file"  (change)="OnSelectedFile($event)" >
+            <div class="fake-file">
+                <input disabled="disabled" >
+            </div>
+            <p>Please Upload only CSV/txt files only</p>
         </div>
-        <p>Please Upload only CSV/txt files only</p>
-    </div>
-    <button (click)="uploadFile()" class="btn btn_m2">Upload</button>
     </div>
 
-
+    <div class="col-sm-12 text-center">
+        <button (click)="uploadFile()" class="btn btn_m2">Upload</button>
+    </div>
  
     </div>
 
-     <h3 class="mtb-20">List Of Group</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="mtb-20 head_m2">List Of Group</h3>
        
-     <table id="example" class="display" style="width:100%">
-       <thead>
-           <tr>
-               <th>Group Name</th>
-               <th>Action</th>
-               
-           </tr>
-       </thead>
-       <tbody>
+            <table id="example" class="display" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>Group Name</th>
+                      <th>Action</th>
+                      
+                  </tr>
+              </thead>
+              <tbody>
+          
+                  <tr *ngFor="let group of grouplist" >
+                      <td>{{group.group_name}}</td>
+                      <td>
+                          <ul class="list_m1">
+                              <li class="color_1" (click)="getContacts(group.id)"><i class="fa fa-eye" aria-hidden="true"></i> </li>
+                              <li class="color_2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></li>
+                              <li class="color_3"><i class="fa fa-trash-o" aria-hidden="true"></i></li>
+                              <li class="color_4"><i class="fa fa-download" aria-hidden="true"></i></li>
+                          </ul>
+                      </td>
+                  </tr>
+          
+              </tbody>
+             
+          </table>
+        </div>
+    </div>
+
    
-           <tr *ngFor="let group of grouplist" >
-               <td>{{group.group_name}}</td>
-               <td>
-                   <ul class="list_m1">
-                       <li class="color_1" (click)="getContacts(group.id)"><i class="fa fa-eye" aria-hidden="true"></i> </li>
-                       <li class="color_2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></li>
-                       <li class="color_3"><i class="fa fa-trash-o" aria-hidden="true"></i></li>
-                       <li class="color_4"><i class="fa fa-download" aria-hidden="true"></i></li>
-                   </ul>
-               </td>
-           </tr>
-   
-       </tbody>
-      
-   </table>
    </div>
    </div>

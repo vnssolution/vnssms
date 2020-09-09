@@ -64,7 +64,7 @@ export class ContactsComponent implements OnInit {
         });
       }
     })
-
+    setTimeout(function(){ $('#example').DataTable(); }, 1000);
   }
 
   // getContacts(){

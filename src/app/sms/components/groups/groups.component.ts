@@ -27,6 +27,7 @@ groupId:number
 
   ngOnInit(): void {
     this.getGroupsList();
+    setTimeout(function(){ $('#example').DataTable(); }, 1000);
 
   }
 
