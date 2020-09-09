@@ -193,6 +193,7 @@ export class LoginComponent implements OnInit {
           if(response['status_code'] == 200){
             this.toastr.success('', "Login Successfully");
             this.router.navigate(["vns/dashboard"]);
+            $('#login_pop').modal('hide');
           }else {
             this.toastr.warning('', response['error'].message);
           }
