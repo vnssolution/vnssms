@@ -1,0 +1,149 @@
+<div class="login_bg">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <img class="logo" src="./assets/images/logo.jpeg" >
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#" class="active" id="login-form-link">Login</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" id="register-form-link">Register</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="login-form" [formGroup]="loginForm" (ngSubmit)="LoginSubmit(loginForm.value)" style="display: block;">
+                                <div class="form-group">
+                                    <input type="text" name="username" formControlName="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                    <div *ngIf="loginSubmitted && logincontrol.username.errors" class="invalid-feedback">
+                                        <div *ngIf="logincontrol.username.errors.required">Username is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" formControlName="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    <div *ngIf="loginSubmitted && logincontrol.password.errors" class="invalid-feedback">
+                                        <div *ngIf="logincontrol.password.errors.required">Password is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                    <label for="remember"> Remember Me</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="register-form" [formGroup]="registerForm" (ngSubmit)="SignUpSubmit(registerForm.value)" style="display: none;">
+                                <div class="form-group">
+                                    <input type="text" name="username" formControlName="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                        <div *ngIf="f.username.errors.required">Username is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" formControlName="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="mobile" formControlName="mobile" id="mobile" tabindex="1" class="form-control" placeholder="Mobile" value="">
+                                    <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                        <div *ngIf="f.mobile.errors.required">Phone is required</div>
+                                        <div *ngIf="f.mobile.errors.minlength">
+                                            Phone must be at least 10 numbers.
+                                         </div>
+                                         <div *ngIf="f.mobile.errors.maxlength">
+                                            Phone can be max 10 numbers.
+                                         </div>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="orgnaization" formControlName="orgnaization" id="orgnaization" tabindex="1" class="form-control" placeholder="Orgainization Name" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="credits" formControlName="credits" id="credits" tabindex="1" class="form-control" placeholder="Credits" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="senderId" formControlName="senderId" id="senderId" tabindex="1" class="form-control" placeholder="Sender id" value="">
+                                </div>
+                                <!-- <div class="form-group">
+                                    <input type="password" name="password" formControlName="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">
+                                           Password is mandatory</div>
+                                         <div *ngIf="f.password.errors.pattern">
+                                           At least 8 Chars/1 uppercase/1 lowercase/1 digit</div>
+                                       </div>
+                                </div> -->
+                                <!-- <div class="form-group">
+                                    <input type="password" name="cpassword" formControlName="cpassword" id="cpassword" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    <div *ngIf="submitted && f.cpassword.errors" class="invalid-feedback">
+                                        <div *ngIf="f.cpassword.errors.required">Confirm Password is required</div>
+                                        <div *ngIf="f.cpassword.errors.mustMatch">Passwords must match</div>
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade otp_pop" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Enter 4 digit OTP Code</h4>
+        </div>
+        <form  [formGroup]="verifyPhoneForm" (ngSubmit)="verfyPhoneSubmit(verifyPhoneForm.value)" >
+        <div class="modal-body">
+            <div class="mobile_send">
+                <div class="row">
+                    <div class="col-sm-8">Send to {{phonenumber}} <i class="fa fa-pencil" aria-hidden="true"></i></div>
+                    <div class="col-sm-4 text-right">0:50</div>
+                </div>
+            </div>
+            <div class="otp_m1">
+            <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:4}"></ng-otp-input>
+        </div>
+        <div class="text-center">
+        <button type="submit" class="btn btn_m2">Submit</button>
+    </div>
+    </div>
+        </form>
+      </div>
+    </div>
+  </div>

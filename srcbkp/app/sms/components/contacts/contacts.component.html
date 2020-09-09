@@ -1,0 +1,37 @@
+<!-- page  -->
+<div class="page_head1">
+    <div class="row">
+        <div class="col-md-7">
+            <h5>Contacts</h5>
+          </div>
+          <div class="col-md-5 text-right">
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                          <a ng-reflect-router-link="/dashboard" href="/dashboard">Home</a>
+                      </li><li aria-current="page" class="breadcrumb-item active">Contacts </li>
+                  </ol></nav></div>
+              </div></div>
+
+<div class="gride_m1">
+
+<table id="example"  class="display" style="width:100%">
+  <thead>
+      <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Mobile</th>
+      </tr>
+  </thead>
+  <tbody>
+
+      <tr *ngFor="let cntlst of contactsList; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{cntlst.contact_name}}</td>
+          <td>{{cntlst.contact_phone}}</td>
+      </tr>
+  </tbody>
+ 
+</table>
+</div>
+<!-- page -->

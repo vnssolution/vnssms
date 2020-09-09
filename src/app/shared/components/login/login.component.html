@@ -1,0 +1,74 @@
+  <!-- Modal -->
+  <div class="modal fade" id="login_pop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-6"> <img src="./assets/images/img/features-1.svg" class="img-fluid"></div>
+          
+  
+            <div class="col-sm-6 login_form">
+                <div class="">
+                    <h3>Sign In to your account</h3>
+                    <div class="login_form_set">
+            <!-- <form>
+                <div class="formInputArea">
+                    <input placeholder="Email/Phone Number " type="text" id="firstName">
+                    <label for="name">Email/Phone Number<span class="imp_star">*</span></label>
+                    <img src="assets/img/icon/user.png" alt="" class="input_icon">
+                </div>
+  
+                <div class="formInputArea">
+                    <input placeholder="Email/Phone Number" type="text" id="firstName">
+                    <label for="name">Password<span class="imp_star">*</span></label>
+                    <img src="assets/img/icon/key.png" alt=""  class="input_icon">
+                </div>
+                <div class="row">
+                    <div class="col-sm-6"><div class="check_m2"><label for="remember"><input type="checkbox" id="remember">Remember Me</label></div></div>
+                    <div class="col-sm-6 text-right"><button class="btn_m3">Forgot Password?</button></div>
+                </div>
+  
+           
+            <div class="text-center m-3">
+            <button type="button" class="btn_m4 ">SIGN IN</button>
+        </div>
+      </form> -->
+      <form [formGroup]="loginForm" (ngSubmit)="LoginSubmit(loginForm.value)">
+        <div class="formInputArea">
+            <input placeholder="Email/Phone Number " formControlName="username" type="text" id="firstName">
+            <label for="name">UserName<span class="imp_star">*</span></label>
+            <div *ngIf="loginSubmitted && logincontrol.username.errors" class="invalid-feedback">
+                <div *ngIf="logincontrol.username.errors.required">Username is required</div>
+            </div>
+            <img src="assets/img/icon/user.png" alt="" class="input_icon">
+        </div>
+
+        <div class="formInputArea">
+            <input placeholder="password" formControlName="password" type="password" id="password">
+            <label for="name">Password<span class="imp_star">*</span></label>
+            <img src="assets/img/icon/key.png" alt=""  class="input_icon">
+            <div *ngIf="loginSubmitted && logincontrol.password.errors" class="invalid-feedback">
+                <div *ngIf="logincontrol.password.errors.required">Password is required</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"><div class="check_m2"><label for="remember"><input type="checkbox" id="remember">Remember Me</label></div></div>
+            <div class="col-sm-6 text-right"><button class="btn_m3">Forgot Password?</button></div>
+        </div>
+    <div class="text-center m-3">
+    <button type="submit" class="btn_m4 ">SIGN IN</button>
+</div>
+</form>
+        <p class="sign_up sign_in_btn" data-dismiss="modal" data-toggle="modal" data-target="#sign_up">New User? <b>SIGN UP</b></p>
+      </div>
+  
+    
+        </div>
+            </div>
+        </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,37 @@
+<div class="wrapper">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+           
+            <li routerLinkActive="active">
+                <a [routerLink]="['dashboard']" >
+                  <i class="fa fa-dashboard"></i> <span>Dashboard </span>
+                 </a>
+              </li>
+
+              <li routerLinkActive="active">
+                <a [routerLink]="['contacts/groups']" >
+                    <i class="fa fa-group" aria-hidden="true"></i> <span>Groups </span>
+                 </a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['contacts']" >
+                    <i class="fa fa-phone" aria-hidden="true"></i> <span>Contacts upload </span>
+                 </a>
+              </li>
+          
+        </ul>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+  
+    <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    
+  <router-outlet></router-outlet>
+  
+  </div>
+
+   </div>

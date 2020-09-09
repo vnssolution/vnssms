@@ -1,0 +1,111 @@
+  <!-- Modal -->
+  <div class="modal fade" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-6"> <img src="./assets/images/img/features-1.svg" class="img-fluid"></div>
+          
+  
+            <div class="col-sm-6 login_form">
+                <div class="">
+                    <h3>SignUp to your account</h3>
+                   
+  
+      <!-- SIGN UP START HERE -->
+      <div class="sign_up_set" > 
+        <form id="register-form" [formGroup]="registerForm" (ngSubmit)="SignUpSubmit(registerForm.value)">
+            <div class="formInputArea">
+                <input type="text" name="username" formControlName="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                <label for="name">Username<span class="imp_star">*</span></label>
+                <img src="assets/img/icon/user.png" alt="" class="input_icon">
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+  
+            <div class="formInputArea">
+                <input type="email" name="email" formControlName="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                <label for="name">Email<span class="imp_star">*</span></label>
+                <img src="assets/img/icon/key.png" alt=""  class="input_icon">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+           
+            <div class="formInputArea">
+                <input type="text" name="mobile" formControlName="mobile" id="mobile" tabindex="1" class="form-control" placeholder="Mobile" value="">
+                <label for="name">Phone Number<span class="imp_star">*</span></label>
+              <img src="assets/img/icon/user.png" alt="" class="input_icon">
+              <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                <div *ngIf="f.mobile.errors.required">Phone is required</div>
+                <div *ngIf="f.mobile.errors.minlength">
+                    Phone must be at least 10 numbers.
+                 </div>
+                 <div *ngIf="f.mobile.errors.maxlength">
+                    Phone can be max 10 numbers.
+                 </div>
+                </div>
+          </div>
+  
+          <div class="formInputArea">
+            <input type="text" name="orgnaization" formControlName="orgnaization" id="orgnaization" tabindex="1" class="form-control" placeholder="Orgainization Name" value="">
+            <label for="name">Orgainization<span class="imp_star">*</span></label>
+              <img src="assets/img/icon/key.png" alt=""  class="input_icon">
+          </div>
+          <div class="formInputArea">
+            <input type="text" name="credits" formControlName="credits" id="credits" tabindex="1" class="form-control" placeholder="Credits" value="">
+            <label for="name">Credits<span class="imp_star">*</span></label>
+            <img src="assets/img/icon/key.png" alt=""  class="input_icon">
+        </div>
+        <div class="formInputArea">
+            <input type="text" name="senderId" formControlName="senderId" id="senderId" tabindex="1" class="form-control" placeholder="Sender id" value="">
+            <label for="name">senderId<span class="imp_star">*</span></label>
+            <img src="assets/img/icon/key.png" alt=""  class="input_icon">
+        </div>
+
+        <div class="text-center m-3">
+        <button type="button" class="btn_m4 ">SIGN UP</button>
+    </div>
+  </form>
+    <p class="sign_up sign_up_btn" data-dismiss="modal" data-toggle="modal" data-target="#login_pop"> Already have an account? <b>Login</b></p>
+  </div>
+      <!-- SIGN UP END HERE -->
+        </div>
+            </div>
+        </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade otp_pop" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Enter 4 digit OTP Code</h4>
+        </div>
+        <form  [formGroup]="verifyPhoneForm" (ngSubmit)="verfyPhoneSubmit(verifyPhoneForm.value)" >
+        <div class="modal-body">
+            <div class="mobile_send">
+                <div class="row">
+                    <div class="col-sm-8">Send to {{phonenumber}} <i class="fa fa-pencil" aria-hidden="true"></i></div>
+                    <div class="col-sm-4 text-right">0:50</div>
+                </div>
+            </div>
+            <div class="otp_m1">
+            <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:4}"></ng-otp-input>
+        </div>
+        <div class="text-center">
+        <button type="submit" class="btn btn_m2">Submit</button>
+    </div>
+    </div>
+        </form>
+      </div>
+    </div>
+  </div>
