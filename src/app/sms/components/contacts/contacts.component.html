@@ -15,6 +15,20 @@
 
 <div class="gride_m1">
 
+    <div class="row mb-30">
+        <div class="col-sm-3">
+            <div class="formInputArea ">
+                <input placeholder="Search here..." formControlName="Search here..." type="text" >
+                <label for="name">Search here...</label>
+               
+               
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn_m2 mt-20" data-toggle="modal" data-target="#exampleModal">Add Contacts</button>
+        </div>
+    </div>
+
 <table id="example"  class="display" style="width:100%">
   <thead>
       <tr>
@@ -35,3 +49,50 @@
 </table>
 </div>
 <!-- page -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Contacts </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           
+            <div class="row">
+            <div class="col-sm-12">
+                <div class="formInputArea ">
+                    <input placeholder="Name" formControlName="Name" type="text" >
+                    <label for="name">Enter Name</label>
+                    </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="small_text">
+                <div class="formInputArea ">
+                    <input placeholder="Mobile" formControlName="Mobile" type="text" >
+                    <label for="name">Enter Mobile</label>
+                    </div>
+                    <p>(+91 is not required)</p>
+                    </div>
+            </div>
+            <div class="col-sm-12"> 
+                <div class="input_m2 small_text">
+                     <label for="">Type Name & Mobile</label>
+                     <textarea name="" id="" cols="30" rows="4"></textarea>
+                     <p>(+91 is not required) example: name1,9900116656 name2,9900116656 9900116656 9900116656 name4,9900116656</p>
+                </div>
+                </div>
+        </div>
+
+        </div>
+        <div class="modal-footer">
+   
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
