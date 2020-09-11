@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ToastrService  } from 'ngx-toastr';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from "@angular/router";
@@ -8,6 +8,7 @@ import * as FileSaver from 'file-saver';
 import * as Papa from 'papaparse';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 declare var jQuery: any;
 declare var $: any;
 
@@ -21,14 +22,16 @@ groupName:any='';
 contactsList:any;
 grouplist:any;
 groupId:number
+dtOptions: any;
+dtTrigger = new Subject();
+@ViewChild(DataTableDirective, { static: true })
+dtElement: DataTableDirective;
 
   constructor(private toastr:ToastrService,private contactService:ContactService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
     this.getGroupsList();
-    setTimeout(function(){ $('#example').DataTable(); }, 1000);
-
   }
 
   createGroup(name:string){
@@ -53,8 +56,8 @@ groupId:number
        response=>{
         if(response['status_code'] == 200){  
                 this.grouplist = response['data'];
-                console.log('all',this.grouplist);
-                }else {
+                this.rerender();
+              }else {
                   this.toastr.warning('', response['error'].message);
                 }
                 },error =>{
@@ -113,5 +116,37 @@ groupId:number
   getContacts(id){
     this.router.navigate([`vns/contacts/group/${id}`]);
   }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    try {
+   // this.ngxService.start();
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  } catch (err) {
+    console.log(err);
+  }
+    this.loader.stop();
+  }
+  ngAfterViewInit() {
+    // this.ngxService.start();
+     this.dtTrigger.next();
+     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+       dtInstance.on('draw.dt', function () {
+         if (jQuery('.dataTables_empty').length > 0) {
+           jQuery('.dataTables_empty').remove();
+         }
+       });
+     });
+    // this.ngxService.start();
+   }
 
 }

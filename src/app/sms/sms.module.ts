@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from 'angular-datatables';
 
 import { SmsRoutingModule } from './sms-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -14,6 +15,7 @@ import { GroupsComponent } from './components/groups/groups.component';
   imports: [
     CommonModule,
     SmsRoutingModule,
+    DataTablesModule,
 
   ]
 })

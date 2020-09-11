@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     $(document).ready(function() {
-      $('#example').DataTable();
+     // $('#example').DataTable();
       $('.custom-upload input[type=file]').change(function(){
         $(this).next().find('input').val($(this).val());
     });

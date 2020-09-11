@@ -67,9 +67,10 @@
         <div class="col-sm-12">
             <h3 class="mtb-20 head_m2">List Of Group</h3>
        
-            <table id="example" class="display" style="width:100%">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
               <thead>
                   <tr>
+                      <th>S.NO</th>
                       <th>Group Name</th>
                       <th>Action</th>
                       
@@ -77,7 +78,8 @@
               </thead>
               <tbody>
           
-                  <tr *ngFor="let group of grouplist" >
+                  <tr *ngFor="let group of grouplist; let i = index" >
+                      <td>{{i+1}}</td>
                       <td>{{group.group_name}}</td>
                       <td>
                           <ul class="list_m1">
