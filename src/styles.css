@@ -477,3 +477,14 @@ input:placeholder-shown~label {
     border: solid 1px #ccc;
     outline: none;
 }
+.add_row_icon{
+    padding: 0;
+}
+.add_row_icon i
+{
+    font-size: 34px;
+    text-align: left;
+    color: #39a141;
+    cursor: pointer;
+   
+}

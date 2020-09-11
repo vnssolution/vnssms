@@ -53,7 +53,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Contacts </h5>
@@ -64,13 +64,13 @@
         <div class="modal-body">
            
             <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-7">
                 <div class="formInputArea ">
                     <input placeholder="Name" formControlName="Name" type="text" >
                     <label for="name">Enter Name</label>
                     </div>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-4">
                 <div class="small_text">
                 <div class="formInputArea ">
                     <input placeholder="Mobile" formControlName="Mobile" type="text" >
@@ -79,13 +79,16 @@
                     <p>(+91 is not required)</p>
                     </div>
             </div>
-            <div class="col-sm-12"> 
+            <div class="col-sm-1 align-self-center add_row_icon">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </div>
+            <!-- <div class="col-sm-12"> 
                 <div class="input_m2 small_text">
                      <label for="">Type Name & Mobile</label>
                      <textarea name="" id="" cols="30" rows="4"></textarea>
                      <p>(+91 is not required) example: name1,9900116656 name2,9900116656 9900116656 9900116656 name4,9900116656</p>
                 </div>
-                </div>
+                </div> -->
         </div>
 
         </div>
