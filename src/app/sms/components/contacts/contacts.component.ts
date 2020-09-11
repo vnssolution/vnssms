@@ -1,4 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
+import { Validators, ValidatorFn, AbstractControl, FormControl, FormGroup,FormArray, FormBuilder } from '@angular/forms';
 import { ToastrService  } from 'ngx-toastr';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from "@angular/router";
@@ -18,6 +19,7 @@ declare var $: any;
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
+ addContactForm:FormGroup
  contactsList:any;
  dtOptions: any;
  dtTrigger = new Subject();
@@ -25,7 +27,8 @@ export class ContactsComponent implements OnInit {
  dtElement: DataTableDirective;
 
   constructor(private toastr:ToastrService,private contactService:ContactService,
-    private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router) { 
+    private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,private formBuilder: FormBuilder,
+    ) { 
       this.dtOptions = {
         pagingType: 'full_numbers',
         dom: 'lBfrtip',
@@ -37,8 +40,11 @@ export class ContactsComponent implements OnInit {
     }
  
   ngOnInit(): void {
-   // this.getContacts();
-
+    this.addContactForm = this.formBuilder.group({
+      'contacts':this.formBuilder.array([
+        this.addContactFormGroup()
+      ])
+    }); 
     this.route.params.subscribe(params => {
       if(params.groupId>0){
      const data = 
@@ -66,6 +72,33 @@ export class ContactsComponent implements OnInit {
     })
     //setTimeout(function(){ $('#example').DataTable(); }, 1000);
   }
+  addContactButton(){
+    (<FormArray>this.addContactForm.get('contacts')).push(this.addContactFormGroup());
+  }
+  addContactFormGroup(): FormGroup{
+    return this.formBuilder.group({
+      "name": ['', Validators.required],
+      "mobile": ['',[Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
+    });
+  }
+  onSubmit(post:any){
+   console.log(post);
+  }
+  remove(index){
+    const control = <FormArray>this.addContactForm.get('contacts'); 
+     if(control.length != 1){
+         control.removeAt(index);
+      }    
+  }
+
+  numberOnly(event:any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+  
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();

@@ -61,41 +61,38 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-           
-            <div class="row">
+        <form [formGroup] ="addContactForm" (ngSubmit)="onSubmit(addContactForm.value)">
+        <div class="modal-body" formArrayName="contacts">
+            <div class="row" *ngFor="let addcontcact of addContactForm.get('contacts')['controls']; let i=index"  [formGroupName]="i">
             <div class="col-sm-7">
                 <div class="formInputArea ">
-                    <input placeholder="Name" formControlName="Name" type="text" >
+                    <input placeholder="Name" formControlName="name" type="text" >
                     <label for="name">Enter Name</label>
                     </div>
             </div>
             <div class="col-sm-4">
                 <div class="small_text">
                 <div class="formInputArea ">
-                    <input placeholder="Mobile" formControlName="Mobile" type="text" >
+                    <input placeholder="Mobile" formControlName="mobile" type="text" (keypress)="numberOnly($event)" >
                     <label for="name">Enter Mobile</label>
                     </div>
                     <p>(+91 is not required)</p>
                     </div>
             </div>
-            <div class="col-sm-1 align-self-center add_row_icon">
+            <div class="col-sm-1 align-self-center add_row_icon" (click)="addContactButton()">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
             </div>
-            <!-- <div class="col-sm-12"> 
-                <div class="input_m2 small_text">
-                     <label for="">Type Name & Mobile</label>
-                     <textarea name="" id="" cols="30" rows="4"></textarea>
-                     <p>(+91 is not required) example: name1,9900116656 name2,9900116656 9900116656 9900116656 name4,9900116656</p>
-                </div>
-                </div> -->
-        </div>
+            <div class="col-sm-1 align-self-center add_row_icon" (click)="remove(i)" >
+                <i class="fa fa-minus" aria-hidden="true"></i>
+          </div>
 
+        </div>
         </div>
         <div class="modal-footer">
    
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+          <button type="submit" class="btn btn-primary" >Save</button>
         </div>
+      </form>
       </div>
     </div>
   </div>
