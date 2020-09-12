@@ -18,10 +18,9 @@ declare var $: any;
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-groupName:any='';
 contactsList:any;
 grouplist:any;
-groupId:number
+groupId:any;
 dtOptions: any;
 dtTrigger = new Subject();
 @ViewChild(DataTableDirective, { static: true })
@@ -55,6 +54,7 @@ dtElement: DataTableDirective;
     .subscribe(  
        response=>{
         if(response['status_code'] == 200){  
+          console.log('test',response);
                 this.grouplist = response['data'];
                 this.rerender();
               }else {
@@ -66,7 +66,7 @@ dtElement: DataTableDirective;
   }
 
   getGroupName(name){
-    this.groupName = name;
+    this.groupId = name;
   }
   
   public files:any;
@@ -75,7 +75,7 @@ dtElement: DataTableDirective;
   }
 
   uploadFile(){
-    if(this.groupName ==''){
+    if(this.groupId ==''){
       this.toastr.warning('', "Please select group name"); return false;
     }
     if(this.files){
@@ -92,7 +92,7 @@ dtElement: DataTableDirective;
         initial['contacts'] = XLSX.utils.sheet_to_json(sheet);
         return initial;
       }, {});
-      jsonData['group_name']= this.groupName;
+      jsonData['group_id']= this.groupId;
      // const dataString = JSON.stringify(jsonData);
      //console.log(jsonData); return false;
         this.contactService.uploadContacts(jsonData)

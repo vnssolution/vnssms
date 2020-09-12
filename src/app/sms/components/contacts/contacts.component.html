@@ -66,14 +66,14 @@
             <div class="row" *ngFor="let addcontcact of addContactForm.get('contacts')['controls']; let i=index"  [formGroupName]="i">
             <div class="col-sm-7">
                 <div class="formInputArea ">
-                    <input placeholder="Name" formControlName="name" type="text" >
+                    <input placeholder="Name" formControlName="contact_name" type="text" >
                     <label for="name">Enter Name</label>
                     </div>
             </div>
             <div class="col-sm-4">
                 <div class="small_text">
                 <div class="formInputArea ">
-                    <input placeholder="Mobile" formControlName="mobile" type="text" (keypress)="numberOnly($event)" >
+                    <input placeholder="Mobile" formControlName="contact_phone" type="text" (keypress)="numberOnly($event)" >
                     <label for="name">Enter Mobile</label>
                     </div>
                     <p>(+91 is not required)</p>

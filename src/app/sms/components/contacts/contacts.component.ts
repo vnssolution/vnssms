@@ -25,7 +25,7 @@ export class ContactsComponent implements OnInit {
  dtTrigger = new Subject();
  @ViewChild(DataTableDirective, { static: true })
  dtElement: DataTableDirective;
-
+ groupId:any;
   constructor(private toastr:ToastrService,private contactService:ContactService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,private formBuilder: FormBuilder,
     ) { 
@@ -46,6 +46,7 @@ export class ContactsComponent implements OnInit {
       ])
     }); 
     this.route.params.subscribe(params => {
+      this.groupId = params.groupId;
       if(params.groupId>0){
      const data = 
         {"type":"all",
@@ -54,13 +55,13 @@ export class ContactsComponent implements OnInit {
          "page":1,
          "per_page":10
         }
-        console.log('test',data);
         this.contactService.getContactList(data)
         .subscribe(  
            response=>{
             this.loader.stop();
             if(response['status_code'] == 200){  
                       this.contactsList = response['data']['contact_list'];
+                      console.log('test',this.contactsList);
                       this.rerender();
                    }else {
                       this.toastr.warning('', response['error'].message);
@@ -77,12 +78,31 @@ export class ContactsComponent implements OnInit {
   }
   addContactFormGroup(): FormGroup{
     return this.formBuilder.group({
-      "name": ['', Validators.required],
-      "mobile": ['',[Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
+      "contact_name": ['', Validators.required],
+      "contact_phone": ['',[Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
     });
   }
   onSubmit(post:any){
-   console.log(post);
+    if(post == ''){
+       this.toastr.warning('','Please enter valid data'); return false;
+    }
+    this.loader.start();
+
+    post['group_id']= this.groupId;
+    console.log('jalendra',post);
+        this.contactService.uploadContacts(post)
+        .subscribe(  
+          response=>{
+            this.loader.stop();
+          if(response['status_code'] == 200){  
+                    this.toastr.success('', response['success'].message);
+                    this.ngOnInit();
+                  }else {
+                    this.toastr.warning('', response['error'].message);
+                  }
+                  },error =>{
+                  console.log("Some thing went wrong");
+        });
   }
   remove(index){
     const control = <FormArray>this.addContactForm.get('contacts'); 
@@ -98,7 +118,7 @@ export class ContactsComponent implements OnInit {
     }
     return true;
   }
-  
+
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();

@@ -37,7 +37,7 @@
         <label for="">Select Group To Add Contacts</label>
         <select name="" id="" #name (change)="getGroupName(name.value)">
             <option   value="">Select Group</option>
-            <option  *ngFor="let group of grouplist" value="{{group.group_name}}" >{{group.group_name}}</option>
+            <option  *ngFor="let group of grouplist" value="{{group.id}}" >{{group.group_name}}</option>
         </select>
     </div>
 
@@ -80,7 +80,7 @@
           
                   <tr *ngFor="let group of grouplist; let i = index" >
                       <td>{{i+1}}</td>
-                      <td>{{group.group_name}}</td>
+                      <td>{{group.group_name}}({{group.contacts_count}})</td>
                       <td>
                           <ul class="list_m1">
                               <li class="color_1" (click)="getContacts(group.id)"><i class="fa fa-eye" aria-hidden="true"></i> </li>
