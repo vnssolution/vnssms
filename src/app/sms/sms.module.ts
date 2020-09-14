@@ -10,9 +10,11 @@ import { LayoutOneComponent } from './components/layout-one/layout-one.component
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TemplatesComponent } from './components/templates/templates.component';
+import { QuickSmsComponent } from './components/quick-sms/quick-sms.component';
 
 @NgModule({
-  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent],
+  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent],
   imports: [
     CommonModule,
     SmsRoutingModule,

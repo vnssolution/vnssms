@@ -201,7 +201,7 @@ input::placeholder {
     visibility: hidden;
 }
 
-input:placeholder-shown~label {
+input:placeholder-shown~label{
     transform: translate(7px, 25px);
     font-size: 16px;
     font-weight: 400;
@@ -368,7 +368,7 @@ background: #a202cc !important;
 
 .formInputArea label {
     position: relative;
-    bottom: -4px;
+    bottom: -10px;
     transform: translate(0px, 0px);
     transition: all 0.2s ease;
     pointer-events: none;
@@ -383,7 +383,7 @@ input::placeholder {
 }
 
 input:placeholder-shown~label {
-    transform: translate(7px, 25px);
+    transform:translate(3px, 21px);
     font-size: 16px;
     font-weight: 400;
     color: #5d5d5d;
@@ -487,4 +487,83 @@ input:placeholder-shown~label {
     color: #39a141;
     cursor: pointer;
    
+}
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current,
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover
+{
+    background: #ff6b01 !important;
+    color: #fff !important;
+    border: none !important;
+}
+.form-control
+{
+    padding: 2px;
+}
+.btn_7 {
+    background: #74447c;
+    color: #fff !important;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.btn_8 {
+    background: #ff6b01;
+    color: #fff !important;
+    font-size: 12px;
+}
+.list_m4 li
+{
+   list-style: none;
+   position: relative;
+   padding-left: 23px;
+   font-size: 15px;
+}
+.list_m4 li input
+{
+    margin-right: 5px;;
+    position: absolute;
+    left: 0px;
+    top: 5px;
+}
+.bg_m1
+{
+    box-shadow: 1px 2px 5px 5px #e3e3e39c;
+    padding: 15px;
+    border-radius: 7px;
+    margin: 15px 0;
+}
+.list_m4{
+    max-height: 360px;
+    overflow-y: auto;
+}
+.list_m4s
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.list_m4s li
+{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    min-width: 40%;
+   
+    
+    margin-right: 17px;
+}
+.list_m4s li .name
+{
+    min-width: 72px;
+    display: inline-block;
+    overflow-x: hidden;
+    vertical-align: bottom;
+}
+.list_m4s li .ph_number
+{
+    
+}
+.list_m4s li:nth-child(odd) {
+    border-right: solid 1px #ccc;
 }

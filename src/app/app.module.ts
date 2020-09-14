@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppApiEndpoints } from './app.api-endpoints';
 import { AppSettings } from './app.settings';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AppSettings } from './app.settings';
     NgxUiLoaderModule,
     FormsModule,
     ToastrModule.forRoot({closeButton:true}),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AutocompleteLibModule
   ],
   providers: [AppApiEndpoints,ToastrModule,AppSettings],
   bootstrap: [AppComponent]
