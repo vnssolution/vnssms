@@ -63,7 +63,7 @@
         </div>
         <form [formGroup] ="addContactForm" (ngSubmit)="onSubmit(addContactForm.value)">
         <div class="modal-body" formArrayName="contacts">
-            <div class="row" *ngFor="let addcontcact of addContactForm.get('contacts')['controls']; let i=index"  [formGroupName]="i">
+            <div class="row list_addding" *ngFor="let addcontcact of addContactForm.get('contacts')['controls']; let i=index"  [formGroupName]="i">
             <div class="col-sm-7">
                 <div class="formInputArea ">
                     <input placeholder="Name" formControlName="contact_name" type="text" >
@@ -79,12 +79,11 @@
                     <p>(+91 is not required)</p>
                     </div>
             </div>
-            <div class="col-sm-1 align-self-center add_row_icon" (click)="addContactButton()">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            <div class="col-sm-1 align-self-center add_row_icon">
+                <i class="fa fa-plus-circle" aria-hidden="true"  (click)="addContactButton()"></i>
+                <i class="fa fa-minus-circle" aria-hidden="true"  (click)="remove(i)"></i>
             </div>
-            <div class="col-sm-1 align-self-center add_row_icon" (click)="remove(i)" >
-                <i class="fa fa-minus" aria-hidden="true"></i>
-          </div>
+           
 
         </div>
         </div>

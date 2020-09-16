@@ -1,0 +1,18 @@
+.list_addding:nth-child(1) .fa-minus-circle
+{
+    display: none;
+}
+.list_addding:nth-child(1) .fa-plus-circle
+{
+    display: block;
+}
+.list_addding .fa-plus-circle
+{
+    display: none;
+}
+.list_addding .fa-minus-circle{
+  color: #fe3c3c;
+}
+.list_addding .small_text p{
+    margin-bottom: 0;
+}
