@@ -83,9 +83,9 @@
                       <td>{{group.group_name}}({{group.contacts_count}})</td>
                       <td>
                           <ul class="list_m1">
-                              <li class="color_1" (click)="getContacts(group.id)"><i class="fa fa-eye" aria-hidden="true"></i> </li>
+                              <li class="color_1" (click)="getContacts(group.id)" ><i class="fa fa-eye" aria-hidden="true"></i> </li>
                               <li class="color_2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></li>
-                              <li class="color_3"><i class="fa fa-trash-o" aria-hidden="true"></i></li>
+                              <li class="color_3" (click)="deleteGroup(group.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i></li>
                               <li class="color_4"><i class="fa fa-download" aria-hidden="true"></i></li>
                           </ul>
                       </td>

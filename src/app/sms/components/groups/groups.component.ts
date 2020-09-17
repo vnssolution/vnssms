@@ -9,6 +9,7 @@ import * as Papa from 'papaparse';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { start } from 'repl';
 declare var jQuery: any;
 declare var $: any;
 
@@ -34,9 +35,8 @@ dtElement: DataTableDirective;
   }
 
   createGroup(name:string){
-    console.log(name); 
-    const data = { "group_name": name }
-    this.contactService.createGroup(data)
+    const data = {"action":"create","group_name":name}
+    this.contactService.manageGroup(data)
               .subscribe(  
                  response=>{
                   if(response['status_code'] == 200){  
@@ -54,7 +54,6 @@ dtElement: DataTableDirective;
     .subscribe(  
        response=>{
         if(response['status_code'] == 200){  
-          console.log('test',response);
                 this.grouplist = response['data'];
                 this.rerender();
               }else {
@@ -149,4 +148,23 @@ dtElement: DataTableDirective;
     // this.ngxService.start();
    }
 
+   deleteGroup(id:number){
+     if(id){
+      this.loader.start();
+      const data = {"action":"drop","group_id":id}
+    this.contactService.manageGroup(data)
+    .subscribe(  
+       response=>{
+      this.loader.stop();
+        if(response['status_code'] == 200){  
+                 this.toastr.success('Success', "Group deleted successfully");
+                 this.getGroupsList();
+                }else {
+                  this.toastr.warning('', response['error'].message);
+                }
+                },error =>{
+                console.log("Some thing went wrong");
+    });
+   }
+  }
 }

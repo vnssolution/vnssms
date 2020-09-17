@@ -21,7 +21,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     AppComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     RouterModule,
     AppRoutingModule,
     SharedModule,

@@ -27,22 +27,22 @@
       <tr>
           <th>S.No</th>
           <th>Template Name</th>
-          <th>Type</th>
+          <th>Message</th>
           <th>Status</th>
           <th>Action</th>
       </tr>
   </thead>
   <tbody>
-   <tr>
-       <td>1</td>
-       <td>Ecofin</td>
-       <td>General</td>
-       <td>Accepted</td>
+   <tr *ngFor="let template of templatesList; let i = index">
+       <td>{{i+1}}</td>
+       <td>{{template.template_name}}</td>
+       <td>{{template.template}}</td>
+       <td>{{template.status}}</td>
        <td>
         <ul class="list_m1">
           
             <li class="color_2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></li>
-            <li class="color_3"><i class="fa fa-trash-o" aria-hidden="true"></i></li>
+            <li class="color_3" (click)="deleteTemplate(template.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></li>
             
         </ul>
        </td>
@@ -65,12 +65,12 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form>
+        <form [formGroup] ="createTemplateForm" (ngSubmit)="onSubmit(createTemplateForm.value)">
 
             <div class="">
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="contact_name" type="text" >
+                        <input placeholder="Name" formControlName="template_name" type="text" >
                         <label for="name">Template Name</label>
                         </div>
                 </div>
@@ -79,7 +79,7 @@
                 <div class="col-sm-12">
                     <div class="input_m2 ">
                         <label for="name">Template</label>
-                        <textarea placeholder="Enter" rows="6"></textarea>
+                        <textarea placeholder="Enter" formControlName="template_msg" rows="6"></textarea>
                         
                         </div>
                 </div>

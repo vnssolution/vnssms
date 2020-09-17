@@ -19,7 +19,7 @@ declare var $: any;
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
- addContactForm:FormGroup
+ addContactForm:FormGroup;
  contactsList:any;
  dtOptions: any;
  dtTrigger = new Subject();
@@ -89,13 +89,13 @@ export class ContactsComponent implements OnInit {
     this.loader.start();
 
     post['group_id']= this.groupId;
-    console.log('jalendra',post);
         this.contactService.uploadContacts(post)
         .subscribe(  
           response=>{
             this.loader.stop();
           if(response['status_code'] == 200){  
                     this.toastr.success('', response['success'].message);
+                    $('#exampleModal .close').trigger('click');
                     this.ngOnInit();
                   }else {
                     this.toastr.warning('', response['error'].message);

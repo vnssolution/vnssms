@@ -6,4 +6,6 @@ export class AppApiEndpoints{
     public verifyPhone = "verifyPhone";
     public createGroup = "createGroup";
     public groupList = "groupList";
+    public manageTemplate = "manageTemplate";
+    public manageGroup = "manageGroup";
 }

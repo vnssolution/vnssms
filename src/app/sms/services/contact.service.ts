@@ -28,14 +28,20 @@ export class ContactService {
         let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.contactList;    
         return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
       } 
-      createGroup(data:any):Observable<any>
+      manageGroup(data:any):Observable<any>
       { 
-        let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.createGroup;    
+        let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.manageGroup;    
         return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
       }
       getGroupsList(data):Observable<any>
       { 
         let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.groupList;    
+        return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
+      }
+
+      createTemplate(data:any):Observable<any>
+      { 
+        let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.manageTemplate;    
         return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
       }
 }
