@@ -12,15 +12,17 @@ import { GroupsComponent } from './components/groups/groups.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TemplatesComponent } from './components/templates/templates.component';
 import { QuickSmsComponent } from './components/quick-sms/quick-sms.component';
-
+import { SmsHistoryComponent } from './components/sms-history/sms-history.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
-  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent],
+  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent, SmsHistoryComponent],
   imports: [
     CommonModule,
     SmsRoutingModule,
     DataTablesModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule
   ]
 })
 export class SmsModule { }

@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import { AppApiEndpoints } from './app.api-endpoints';
 import { AppSettings } from './app.settings';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+
 
 
 @NgModule({
@@ -28,9 +31,11 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     SmsModule,
     NgxUiLoaderModule,
     FormsModule,
+
     ToastrModule.forRoot({closeButton:true}),
     BrowserAnimationsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [AppApiEndpoints,ToastrModule,AppSettings],
   bootstrap: [AppComponent]

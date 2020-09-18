@@ -197,11 +197,11 @@ a{
     color: #ff6b01;
 }
 
-input::placeholder {
+.formInputArea input::placeholder {
     visibility: hidden;
 }
 
-input:placeholder-shown~label{
+.formInputArea input:placeholder-shown~label{
     transform: translate(7px, 25px);
     font-size: 16px;
     font-weight: 400;
@@ -378,11 +378,11 @@ background: #a202cc !important;
     color: #ff6a01;
 }
 
-input::placeholder {
+.formInputArea input::placeholder {
     visibility: hidden;
 }
 
-input:placeholder-shown~label {
+.formInputArea input:placeholder-shown~label {
     transform:translate(3px, 21px);
     font-size: 16px;
     font-weight: 400;
@@ -426,6 +426,22 @@ input:placeholder-shown~label {
     background: #ff6a01;
     color: #fff;
     border: none;
+}
+.btn_m5
+{
+
+ 
+    color: #fff!important;
+    background: #ff3535 !important;
+    outline: none !important;
+}
+.btn_m6
+{
+
+ 
+    color: #fff!important;
+    background: #2ec63a !important;
+    outline: none !important;
 }
 .mtb-30
 {
