@@ -583,3 +583,65 @@ background: #a202cc !important;
 .list_m4s li:nth-child(odd) {
     border-right: solid 1px #ccc;
 }
+.dt-buttons .dt-button,
+.dt-buttons .dt-button:hover{
+   
+ 
+}
+.dt-button.buttons-csv
+{
+  
+    border: none!important;
+    color: #fff;
+    padding: 0;
+    overflow: visible;
+    margin: 0;
+    font-size: 21px;
+    width: 36px;
+    height: 41px;
+   box-shadow: none !important;
+    background: url(../src/assets/images/img/csv.png)!important;
+    background-repeat: no-repeat !important;
+    background-size: 28px !important;
+ 
+}
+.dt-button.buttons-excel 
+{
+  
+    border: none!important;
+    color: #fff;
+    padding: 0;
+    overflow: visible;
+    margin: 0;
+    font-size: 21px;
+    width: 36px;
+    height: 41px;
+   box-shadow: none !important;
+    background: url(../src/assets/images/img/excel.png)!important;
+    background-repeat: no-repeat !important;
+    background-size: 30px !important;
+ 
+}
+.dt-button.buttons-print 
+{
+  
+    border: none!important;
+    color: #fff;
+    padding: 0;
+    overflow: visible;
+    margin: 0;
+    font-size: 21px;
+    width: 36px;
+    height: 41px;
+   box-shadow: none !important;
+    background: url(../src/assets/images/img/printer.png)!important;
+    background-repeat: no-repeat !important;
+    background-size: 30px !important;
+ 
+}
+.dt-button span{
+  display: none;
+}
+div.dt-buttons{
+    margin-left: 15px;
+}
