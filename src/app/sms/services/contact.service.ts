@@ -44,4 +44,14 @@ export class ContactService {
         let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.manageTemplate;    
         return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
       }
+      manageTemplate(data:any):Observable<any>
+      { 
+        let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.manageTemplate;    
+        return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
+      }
+      sendMessage(data:any):Observable<any>
+      { 
+        let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.sendMessage;    
+        return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
+      }
 }

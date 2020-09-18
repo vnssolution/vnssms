@@ -27,6 +27,9 @@
         <div class="col-sm-2">
             <button class="btn btn_m2 mt-20" data-toggle="modal" data-target="#exampleModal">Add Contacts</button>
         </div>
+        <div class="col-sm-2">
+            <button class="btn btn_m2 mt-20" data-toggle="modal" data-target="#createwhitelistModal">Create White List</button>
+        </div>
     </div>
 
 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" >
@@ -92,6 +95,36 @@
         <div class="modal-footer">
    
           <button type="submit" class="btn btn-primary" >Save</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="createwhitelistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create White List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup] ="createWhiteListForm" (ngSubmit)="whiteListFormSubmit(createWhiteListForm.value)">
+
+            <div class="">
+                <div class="col-sm-12">
+                    <div class="input_m2 ">
+                        <label for="name">Message</label>
+                        <textarea placeholder="Enter" formControlName="whitelist_msg" rows="6"></textarea>
+                        </div>
+                </div>
+            </div>
+      
+            
+        <div class="modal-footer">
+           <button type="submit" class="btn btn-primary" >Save</button>
         </div>
       </form>
       </div>

@@ -1,5 +1,5 @@
 {
-  "name": "projects",
+  "name": "project",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run project:serve-ssr",
-    "serve:ssr": "node dist/server/main.js",
+    "serve:ssr": "node dist/project/server/main.js",
     "build:ssr": "ng build --prod && ng run project:server:production",
     "prerender": "ng run project:prerender"
   },

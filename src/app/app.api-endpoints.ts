@@ -8,4 +8,5 @@ export class AppApiEndpoints{
     public groupList = "groupList";
     public manageTemplate = "manageTemplate";
     public manageGroup = "manageGroup";
+    public sendMessage = "sendMessage";
 }

@@ -36,7 +36,7 @@
             </div>
            
             <div class="formInputArea">
-                <input type="text" name="mobile" formControlName="mobile" id="mobile" tabindex="1" class="form-control" placeholder="Mobile" value="">
+                <input type="text" name="mobile" formControlName="mobile" maxlength="10" id="mobile" tabindex="1" class="form-control" placeholder="Mobile" value="">
                 <label for="name">Phone Number<span class="imp_star">*</span></label>
               <img src="assets/img/icon/user.png" alt="" class="input_icon">
               <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
@@ -67,7 +67,7 @@
         </div>
 
         <div class="text-center m-3">
-        <button type="button" class="btn_m4 ">SIGN UP</button>
+        <button type="submit" class="btn_m4 ">SIGN UP</button>
     </div>
   </form>
     <p class="sign_up sign_up_btn" data-dismiss="modal" data-toggle="modal" data-target="#login_pop"> Already have an account? <b>Login</b></p>

@@ -26,6 +26,8 @@ export class ContactsComponent implements OnInit {
  @ViewChild(DataTableDirective, { static: true })
  dtElement: DataTableDirective;
  groupId:any;
+ phoneNumbersList=[];
+ createWhiteListForm:FormGroup;
   constructor(private toastr:ToastrService,private contactService:ContactService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,private formBuilder: FormBuilder,
     ) { 
@@ -37,6 +39,11 @@ export class ContactsComponent implements OnInit {
           'csv', 'excel', 'pdf', 'print'
         ]
       };
+
+      this.createWhiteListForm = this.formBuilder.group({
+        'whitelist_msg':['',Validators.required],
+       });
+
     }
  
   ngOnInit(): void {
@@ -61,7 +68,8 @@ export class ContactsComponent implements OnInit {
             this.loader.stop();
             if(response['status_code'] == 200){  
                       this.contactsList = response['data']['contact_list'];
-                      console.log('test',this.contactsList);
+                      this.getPhoneNumbers(this.contactsList);
+
                       this.rerender();
                    }else {
                       this.toastr.warning('', response['error'].message);
@@ -72,7 +80,14 @@ export class ContactsComponent implements OnInit {
       }
     })
     //setTimeout(function(){ $('#example').DataTable(); }, 1000);
+
   }
+  getPhoneNumbers(phone:any){
+   phone.forEach(element => {
+     this.phoneNumbersList.push(element['contact_phone']);
+    });
+  }
+  
   addContactButton(){
     (<FormArray>this.addContactForm.get('contacts')).push(this.addContactFormGroup());
   }
@@ -111,6 +126,31 @@ export class ContactsComponent implements OnInit {
       }    
   }
 
+  whiteListFormSubmit(post :any){
+     console.log(this.phoneNumbersList);
+     console.log(post);
+    if(post['whitelist_msg'] == ''){
+      this.toastr.warning('','Please enter valid data'); return false;
+     }
+    this.loader.start();
+    const data = {"type":"normalsms","content":post['whitelist_msg'],
+    "contacts":this.phoneNumbersList, "mediaurl":1}
+  this.contactService.sendMessage(data)
+  .subscribe(  
+    response=>{
+      this.loader.stop();
+      console.log('ttt',response);
+    if(response['status_code'] == 200){  
+              this.toastr.success('', response['success'].message);
+              $('#createwhitelistModal .close').trigger('click');
+            }else {
+              this.toastr.warning('', response['error'].message);
+            }
+            },error =>{
+            console.log("Some thing went wrong");
+  });
+  }
+  
   numberOnly(event:any): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
