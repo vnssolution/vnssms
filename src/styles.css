@@ -197,11 +197,11 @@ a{
     color: #ff6b01;
 }
 
-input::placeholder {
+.formInputArea input::placeholder {
     visibility: hidden;
 }
 
-input:placeholder-shown~label{
+.formInputArea input:placeholder-shown~label{
     transform: translate(7px, 25px);
     font-size: 16px;
     font-weight: 400;
@@ -378,11 +378,11 @@ background: #a202cc !important;
     color: #ff6a01;
 }
 
-input::placeholder {
+.formInputArea input::placeholder {
     visibility: hidden;
 }
 
-input:placeholder-shown~label {
+.formInputArea input:placeholder-shown~label {
     transform:translate(3px, 21px);
     font-size: 16px;
     font-weight: 400;
@@ -426,6 +426,22 @@ input:placeholder-shown~label {
     background: #ff6a01;
     color: #fff;
     border: none;
+}
+.btn_m5
+{
+
+ 
+    color: #fff!important;
+    background: #ff3535 !important;
+    outline: none !important;
+}
+.btn_m6
+{
+
+ 
+    color: #fff!important;
+    background: #2ec63a !important;
+    outline: none !important;
 }
 .mtb-30
 {
@@ -566,4 +582,66 @@ input:placeholder-shown~label {
 }
 .list_m4s li:nth-child(odd) {
     border-right: solid 1px #ccc;
+}
+.dt-buttons .dt-button,
+.dt-buttons .dt-button:hover{
+   
+ 
+}
+.dt-button.buttons-csv
+{
+  
+    border: none!important;
+    color: #fff;
+    padding: 0;
+    overflow: visible;
+    margin: 0;
+    font-size: 21px;
+    width: 36px;
+    height: 41px;
+   box-shadow: none !important;
+    background: url(../src/assets/images/img/csv.png)!important;
+    background-repeat: no-repeat !important;
+    background-size: 28px !important;
+ 
+}
+.dt-button.buttons-excel 
+{
+  
+    border: none!important;
+    color: #fff;
+    padding: 0;
+    overflow: visible;
+    margin: 0;
+    font-size: 21px;
+    width: 36px;
+    height: 41px;
+   box-shadow: none !important;
+    background: url(../src/assets/images/img/excel.png)!important;
+    background-repeat: no-repeat !important;
+    background-size: 30px !important;
+ 
+}
+.dt-button.buttons-print 
+{
+  
+    border: none!important;
+    color: #fff;
+    padding: 0;
+    overflow: visible;
+    margin: 0;
+    font-size: 21px;
+    width: 36px;
+    height: 41px;
+   box-shadow: none !important;
+    background: url(../src/assets/images/img/printer.png)!important;
+    background-repeat: no-repeat !important;
+    background-size: 30px !important;
+ 
+}
+.dt-button span{
+  display: none;
+}
+div.dt-buttons{
+    margin-left: 15px;
 }

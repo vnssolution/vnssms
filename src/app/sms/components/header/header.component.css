@@ -1,0 +1,46 @@
+.nav.navbar-nav
+{
+    flex-direction: inherit;
+}
+.navbar-custom-menu .dropdown
+{
+  margin-left: 25px;
+  margin-right: 15px;
+}    
+.navbar-custom-menu .dropdown-toggle::after
+{
+    position: relative;
+    left: 8px;
+}
+.tabs_models_1
+{
+    list-style: none;
+}
+.tabs_models_1 li{
+    padding: 8px;
+}
+.navbar-custom-menu a.dropdown-toggle
+{
+  background: transparent !important;
+}
+.user-menu .user-body
+{
+  padding: 10px;
+}
+.navbar-nav>.user-menu>.dropdown-menu>.user-body a {
+    color: #444 !important;
+    background: transparent;
+    font-size: 15px;
+}
+.link_m1 .dropdown-toggle::after
+{
+  display: none;
+}
+.bg_label1{
+    background: #04a720;
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 3px 8px;
+    color: #fff;
+    font-weight: 500;
+}

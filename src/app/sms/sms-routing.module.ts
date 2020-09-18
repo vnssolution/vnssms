@@ -7,7 +7,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { TemplatesComponent } from './components/templates/templates.component';
 import {QuickSmsComponent } from './components/quick-sms/quick-sms.component'
-
+import { SmsHistoryComponent } from './components/sms-history/sms-history.component';
 const routes: Routes = [{
   path: 'vns', component: LayoutOneComponent,
   children: [
@@ -17,6 +17,7 @@ const routes: Routes = [{
     { path: 'contacts/groups', component: GroupsComponent },
     { path: 'templates', component: TemplatesComponent },
     { path: 'quick-sms', component: QuickSmsComponent },
+    { path: 'sms-history', component: SmsHistoryComponent },
   ]
 }];
 
