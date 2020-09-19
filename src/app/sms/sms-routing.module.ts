@@ -8,6 +8,8 @@ import { GroupsComponent } from './components/groups/groups.component';
 import { TemplatesComponent } from './components/templates/templates.component';
 import {QuickSmsComponent } from './components/quick-sms/quick-sms.component'
 import { SmsHistoryComponent } from './components/sms-history/sms-history.component';
+import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
+import { UserAccountsComponent } from './components/user-accounts/user-accounts.component';
 const routes: Routes = [{
   path: 'vns', component: LayoutOneComponent,
   children: [
@@ -18,6 +20,9 @@ const routes: Routes = [{
     { path: 'templates', component: TemplatesComponent },
     { path: 'quick-sms', component: QuickSmsComponent },
     { path: 'sms-history', component: SmsHistoryComponent },
+    { path: 'settings', component: ProfileSettingsComponent },
+    { path: 'user-account', component: UserAccountsComponent },
+    
   ]
 }];
 

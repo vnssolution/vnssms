@@ -14,8 +14,10 @@ import { TemplatesComponent } from './components/templates/templates.component';
 import { QuickSmsComponent } from './components/quick-sms/quick-sms.component';
 import { SmsHistoryComponent } from './components/sms-history/sms-history.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
+import { UserAccountsComponent } from './components/user-accounts/user-accounts.component';
 @NgModule({
-  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent, SmsHistoryComponent],
+  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent, SmsHistoryComponent, ProfileSettingsComponent, UserAccountsComponent],
   imports: [
     CommonModule,
     SmsRoutingModule,

@@ -645,3 +645,34 @@ background: #a202cc !important;
 div.dt-buttons{
     margin-left: 15px;
 }
+li{
+    list-style: none;
+}
+.list_m5
+{
+    position: relative;
+    display: inline-block;
+    padding-right: 50px;
+}
+.edit_icon
+{
+    position: absolute;
+    right: -3px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #20d100;
+}
+.list_m5 li 
+{
+    padding:7px 0;
+}
+.list_m5 li span
+{
+  font-weight: 600;
+}
+.list_m5 li span:first-child
+{
+    width: 150px;
+    display: inline-block;
+    font-weight: 500
+}
