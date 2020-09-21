@@ -37,20 +37,20 @@
          </div>
 
          <div class="row">
-             <div class="col-sm-6"><button class="btn btn_7">Send Message : 15</button></div>
+             <div class="col-sm-6"><button class="btn btn_7" (click)="sendMessage()" >Send Message <span *ngIf="whiteListContactsCount">:{{whiteListContactsCount}}</span></button></div>
              <div class="col-sm-6 text-right"><button class="btn btn_8 mr-2">Clear</button> </div>
          </div>
      </div>
 
      <div class="col-sm-4">
-        <div class="input_m2 ">
+        <!-- <div class="input_m2 ">
            <label for="name">Search Here</label>
             <input type="text" class="form-control">
-        </div>
+        </div> -->
         <div class="bg_m1">
         <h5 class=" mb-3">List Of Group</h5>
         <ul class="list_m4">
-            <li *ngFor="let grp of grouplist"><label for="name"><input type="checkbox" id="name" value="{{grp.id}}" (click)="getGroupInfo(grp.id)">{{grp.group_name}}</label></li>
+            <li *ngFor="let grp of grouplist; let i = index"><label for="name"><input type="checkbox" id="groupname{{i}}" name="groupname" value="{{grp.id}}" (click)="getGroupInfo(grp.id)">{{grp.group_name}}({{grp.white_contacts_count}}/{{grp.contacts_count}})</label></li>
         </ul>
     </div>
         </div>

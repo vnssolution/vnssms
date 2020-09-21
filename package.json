@@ -13,7 +13,6 @@
     "build:ssr": "ng build --prod && ng run project:server:production",
     "prerender": "ng run project:prerender",
     "postinstall": "ngcc"
-
   },
   "private": true,
   "dependencies": {

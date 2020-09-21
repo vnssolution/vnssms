@@ -22,7 +22,10 @@ export class QuickSmsComponent implements OnInit {
   approvedTemplates:any;
   templateMsg:any='';
   grouplist:any;
-
+  whiteList:any;
+  whiteListContactsCount:any;
+ phoneNumbersList=[];
+  
   constructor(private toastr:ToastrService,private contactService:ContactService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,private formBuilder: FormBuilder) { }
 
@@ -62,6 +65,63 @@ export class QuickSmsComponent implements OnInit {
     });
   }
   getGroupInfo(id){
-    console.log(id);
+    var grpArray = [];
+    $("input:checkbox[name=groupname]:checked").each(function () {
+      grpArray.push($(this).val())
+   });
+   const data = 
+         {"type":"all",
+         "group_id":grpArray,
+         "free_text":"",
+         "report":"download",
+         "status":"",
+         "page":1,
+         "per_page":10
+        }
+   this.contactService.getContactList(data)
+   .subscribe(  
+      response=>{
+       if(response['status_code'] == 200){  
+               this.whiteList = response['data']['contact_list'];
+               this.whiteListContactsCount = response['data']['contact_list'].length;
+               this.getPhoneNumbers(this.whiteList);
+
+             }else {
+                 this.toastr.warning('', response['error'].message);
+               }
+               },error =>{
+               console.log("Some thing went wrong");
+   });
   }
+  getPhoneNumbers(phone:any){
+    phone.forEach(element => {
+      this.phoneNumbersList.push(element['contact_phone']);
+     });
+   }
+
+  sendMessage(){
+    if(this.templateMsg ==''){
+      this.toastr.warning('', "Please select template"); return false;
+    }
+    this.loader.start();
+    const data = {
+      "type":"quicksms",
+      "campaign_name":"quicksms",
+      "content":this.templateMsg,
+      "contacts":this.phoneNumbersList,
+      "mediaurl":1
+      }
+  this.contactService.sendMessage(data)
+  .subscribe(  
+    response=>{
+      this.loader.stop();
+    if(response['status_code'] == 200){  
+              this.toastr.success('', response['success'].message);
+            }else {
+              this.toastr.warning('', response['error'].message);
+            }
+            },error =>{
+            console.log("Some thing went wrong");
+  });  }
+
 }

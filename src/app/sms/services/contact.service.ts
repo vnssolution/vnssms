@@ -54,4 +54,9 @@ export class ContactService {
         let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.sendMessage;    
         return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
       }
+      getStatusList():Observable<any>
+      { 
+        let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.getStatusList;    
+        return this.httpClient.post(apiUrl, { headers: this.reqHeader });
+      }
 }

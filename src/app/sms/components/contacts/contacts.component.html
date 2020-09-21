@@ -19,9 +19,11 @@
         <div class="col-sm-3">
            <div class="form-group ">
             <label for="name">Select Type List</label>
-                <select name="" id="" class="form-control">
-                    <option value="">white List</option>
-                    <option value="">Black List</option>
+                <select name="" #contact id="" class="form-control" (change)="getContactsType(contact.value)">
+                    <option value="" >Select</option>
+                    <option value="all" >All</option>
+                    <option value="white_list" >white List</option>
+                    <option value="block_list" >Black List</option>
                 </select>   
             </div>
         </div>
@@ -79,7 +81,7 @@
             <div class="col-sm-4">
                 <div class="small_text">
                 <div class="formInputArea ">
-                    <input placeholder="Mobile" formControlName="contact_phone" type="text" (keypress)="numberOnly($event)" >
+                    <input placeholder="Mobile" formControlName="contact_phone" type="text" >
                     <label for="name">Enter Mobile</label>
                     </div>
                     <p>(+91 is not required)</p>
@@ -117,9 +119,18 @@
             <div class="">
                 <div class="col-sm-12">
                     <div class="input_m2 ">
-                        <label for="name">Message</label>
-                        <textarea placeholder="Enter" formControlName="whitelist_msg" rows="6"></textarea>
+                        <label for="name">Template</label>
+                        <select name="" #template (change)="getTemplate(template.value)" id="" class="form-control">
+                            <option value="">Select Template</option>
+                            <option *ngFor="let tmplt of approvedTemplates" value="{{tmplt.template}}">{{tmplt.template_name}}</option>
+                        </select>
                         </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="input_m2 ">
+                        <label for="name">Message</label>
+                        <textarea placeholder="Enter" rows="6" readonly>{{templateMsg}}</textarea>
+                    </div>
                 </div>
             </div>
       

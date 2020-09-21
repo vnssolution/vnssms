@@ -21,6 +21,9 @@ declare var $: any;
 export class ContactsComponent implements OnInit {
  addContactForm:FormGroup;
  contactsList:any;
+ approvedTemplates:any;
+ statusList:any;
+ templateMsg:any;
  dtOptions: any;
  dtTrigger = new Subject();
  @ViewChild(DataTableDirective, { static: true })
@@ -41,7 +44,7 @@ export class ContactsComponent implements OnInit {
       };
 
       this.createWhiteListForm = this.formBuilder.group({
-        'whitelist_msg':['',Validators.required],
+        //'whitelist_msg':['',Validators.required],
        });
 
     }
@@ -80,7 +83,63 @@ export class ContactsComponent implements OnInit {
       }
     })
     //setTimeout(function(){ $('#example').DataTable(); }, 1000);
+    const data = {"action":"list","free_text":"","status":1,"page":1,"per_page":10}
+        this.contactService.manageTemplate(data)
+        .subscribe(  
+           response=>{
+            this.loader.stop();
+            if(response['status_code'] == 200){  
+                      this.approvedTemplates = response['data']['template_list'];
+                   }else {
+                      this.toastr.warning('', response['error'].message);
+                    }
+                    },error =>{
+                    console.log("Some thing went wrong");
+        });
 
+        this.contactService.getStatusList()
+        .subscribe(  
+           response=>{
+            this.loader.stop();
+            console.log('jakk',response);
+            if(response['status_code'] == 200){  
+                      this.statusList = response['data'];
+                   }else {
+                      this.toastr.warning('', response['error'].message);
+                    }
+                    },error =>{
+                    console.log("Some thing went wrong");
+              });
+     }
+  getContactsType(status:any){
+    this.loader.start();
+    const data = 
+          {"type": status,
+          "group_id":this.groupId,
+          "free_text":"",
+          "report":"download",
+          "page":1,
+          "per_page":10
+        }
+        console.log(data);
+   this.contactService.getContactList(data)
+    .subscribe(  
+       response=>{
+        this.loader.stop();
+        if(response['status_code'] == 200){  
+                  this.contactsList = response['data']['contact_list'];
+                  //this.getPhoneNumbers(this.contactsList);
+
+                  this.rerender();
+               }else {
+                  this.toastr.warning('', response['error'].message);
+                }
+                },error =>{
+                console.log("Some thing went wrong");
+    });
+  }
+  getTemplate(msg:string){
+    this.templateMsg = msg;
   }
   getPhoneNumbers(phone:any){
    phone.forEach(element => {
@@ -127,19 +186,21 @@ export class ContactsComponent implements OnInit {
   }
 
   whiteListFormSubmit(post :any){
-     console.log(this.phoneNumbersList);
-     console.log(post);
     if(post['whitelist_msg'] == ''){
       this.toastr.warning('','Please enter valid data'); return false;
      }
     this.loader.start();
-    const data = {"type":"normalsms","content":post['whitelist_msg'],
-    "contacts":this.phoneNumbersList, "mediaurl":1}
+    const data = {
+      "type":"whitelist",
+      "campaign_name":"whitelist",
+      "content":this.templateMsg,
+      "contacts":this.phoneNumbersList,
+      "mediaurl":1
+      }
   this.contactService.sendMessage(data)
   .subscribe(  
     response=>{
       this.loader.stop();
-      console.log('ttt',response);
     if(response['status_code'] == 200){  
               this.toastr.success('', response['success'].message);
               $('#createwhitelistModal .close').trigger('click');

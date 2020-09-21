@@ -9,4 +9,5 @@ export class AppApiEndpoints{
     public manageTemplate = "manageTemplate";
     public manageGroup = "manageGroup";
     public sendMessage = "sendMessage";
+    public getStatusList = "getStatusList";
 }
