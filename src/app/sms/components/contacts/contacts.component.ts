@@ -82,7 +82,7 @@ export class ContactsComponent implements OnInit {
         });
       }
     })
-    //setTimeout(function(){ $('#example').DataTable(); }, 1000);
+    //get templates list
     const data = {"action":"list","free_text":"","status":1,"page":1,"per_page":10}
         this.contactService.manageTemplate(data)
         .subscribe(  

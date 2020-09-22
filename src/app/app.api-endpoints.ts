@@ -10,4 +10,5 @@ export class AppApiEndpoints{
     public manageGroup = "manageGroup";
     public sendMessage = "sendMessage";
     public getStatusList = "getStatusList";
+    public sentHistory ="sentHistory";
 }

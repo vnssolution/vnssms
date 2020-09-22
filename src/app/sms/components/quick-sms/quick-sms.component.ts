@@ -24,10 +24,11 @@ export class QuickSmsComponent implements OnInit {
   grouplist:any;
   whiteList:any;
   whiteListContactsCount:any;
- phoneNumbersList=[];
+  phoneNumbersList=[];
   
   constructor(private toastr:ToastrService,private contactService:ContactService,
-    private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,private formBuilder: FormBuilder) { }
+    private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.GroupsList();

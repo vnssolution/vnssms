@@ -18,33 +18,37 @@
 <div class="gride_m1">
 
     <div class="row mb-30">
-        
+      <form [formGroup] ="dateRangeSearchForm" (ngSubmit)="onSubmit(dateRangeSearchForm.value)">
         <div class="col-xs-12 col-12 col-md-3 form-group">
           <label>Select Date Range</label>
-            <input type="text"
+            <input type="text" formControlName="dateRange"
             placeholder="Date Range"
+            data-date-format="yyyy-mm-dd"
                    class="form-control"
                    bsDaterangepicker>
           </div>
 
         <div class="col-sm-4" style="white-space: nowrap;">
-            <button class="btn btn_m2 mt-30 mr-2">Search</button>
+            <button type="submit" class="btn btn_m2 mt-30 mr-2">Search</button>
             <button class="btn btn_m5 mt-30 mr-2">Reset</button>
-            <button class="btn btn_m6 mt-30 mr-2">Download</button>
+            <!-- <button class="btn btn_m6 mt-30 mr-2">Download</button> -->
         </div>
+        </form>
  <div class="col-xs-12 col-12 col-md-2  offset-sm-3 form-group">
           <label>Select SMS Type</label>
-             <select name="" id="" class="form-control">
-               <option value="">Campaign SMS</option>
-               <option value="">List SMS</option>
+             <select name="" #msgs (change)="getMsgsTypeHistory(msgs.value)" id="" class="form-control">
+               <option value="campaigns">Campaign SMS</option>
+               <option value="list_sms">List SMS</option>
              </select>
           </div> 
     </div>
 
-<table >
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead>
       <tr>
-          <th style="white-space: nowrap;">Sender ID	</th>
+          <th>S.no	</th>
+          <th style="white-space: nowrap;">Sender</th>
+          <th>Campaign Name</th>
           <th>Count</th>
           <th>Time & Date</th>
           <th>Message</th>
@@ -53,36 +57,13 @@
   </thead>
   <tbody>
 
-<tr>
-  <td>UBLOOD</td>
+<tr *ngFor="let msghstry of getMsgsHistory; let i = index;" >
+  <td>{{i+1}}</td>
+  <td>{{msghstry.from}}</td>
+  <td>{{msghstry.campaign_name}}</td>
   <td>25</td>
-  <td>01-09-2020 06:21 PM</td>
-  <td>Hi Vaishali Vuppu, I am Lucky from Jobsmama, we are reaching out for Interview session, Kindly pick our call. Thanks</td>
-  <td>
-    <ul class="list_m1">
-      <li class="color_1"><i aria-hidden="true" class="fa fa-eye"></i></li>
-      <li class="color_2"><i class="fa fa-paper-plane" aria-hidden="true"></i></li>
-      <li class="color_4"><i aria-hidden="true" class="fa fa-download"></i></li></ul>
-   </td>
-</tr>
-<tr>
-  <td>UBLOOD</td>
-  <td>12</td>
-  <td>01-09-2020 06:21 PM</td>
-  <td>Hi Vaishali Vuppu, I am Lucky from Jobsmama, we are reaching out for Interview session, Kindly pick our call. Thanks</td>
-  <td>
-    <ul class="list_m1">
-      <li class="color_1"><i aria-hidden="true" class="fa fa-eye"></i></li>
-      <li class="color_2"><i class="fa fa-paper-plane" aria-hidden="true"></i></li>
-      <li class="color_4"><i aria-hidden="true" class="fa fa-download"></i></li></ul>
-   </td>
-</tr>
-
-<tr>
-  <td>UBLOOD</td>
-  <td>12</td>
-  <td>01-09-2020 06:21 PM</td>
-  <td>Hi Vaishali Vuppu, I am Lucky from Jobsmama, we are reaching out for Interview session, Kindly pick our call. Thanks</td>
+  <td>{{msghstry.created_at}}</td>
+  <td>{{msghstry.message}}</td>
   <td>
     <ul class="list_m1">
       <li class="color_1"><i aria-hidden="true" class="fa fa-eye"></i></li>
