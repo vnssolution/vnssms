@@ -21,13 +21,17 @@
 
     <div class="col-sm-6">
         <div class="input_m2 ">
-           <label for="name">Template</label>
-            <select name="" #template (change)="getTemplate(template.value)" id="" class="form-control">
-                <option value="">Select Template</option>
-                <option *ngFor="let tmplt of approvedTemplates" value="{{tmplt.template}}">{{tmplt.template_name}}</option>
-        
-            </select>
+           <label for="name">Campaign Name</label>
+           <input type="text"  #camaign >
         </div>
+        <div class="input_m2 ">
+            <label for="name">Template</label>
+             <select name="" #template (change)="getTemplate(template.value)" id="" class="form-control">
+                 <option value="">Select Template</option>
+                 <option *ngFor="let tmplt of approvedTemplates" value="{{tmplt.template}}">{{tmplt.template_name}}</option>
+         
+             </select>
+         </div>
   <br>
         <div class="input_m2 mb-4 ">
             <label for="name">Message</label>
@@ -37,7 +41,7 @@
          </div>
 
          <div class="row">
-             <div class="col-sm-6"><button class="btn btn_7" (click)="sendMessage()" >Send Message <span *ngIf="whiteListContactsCount">:{{whiteListContactsCount}}</span></button></div>
+             <div class="col-sm-6"><button class="btn btn_7" (click)="sendMessage(camaign.value)" >Send Message <span *ngIf="whiteListContactsCount">:{{whiteListContactsCount}}</span></button></div>
              <div class="col-sm-6 text-right"><button class="btn btn_8 mr-2">Clear</button> </div>
          </div>
      </div>

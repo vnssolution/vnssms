@@ -100,18 +100,22 @@ export class QuickSmsComponent implements OnInit {
      });
    }
 
-  sendMessage(){
+  sendMessage(campaign:string){
+    if(campaign ==''){
+      this.toastr.warning('', "Please enter campaign"); return false;
+    }
     if(this.templateMsg ==''){
       this.toastr.warning('', "Please select template"); return false;
     }
     this.loader.start();
     const data = {
       "type":"quicksms",
-      "campaign_name":"quicksms",
+      "campaign_name":campaign,
       "content":this.templateMsg,
       "contacts":this.phoneNumbersList,
       "mediaurl":1
       }
+      console.log(data);
   this.contactService.sendMessage(data)
   .subscribe(  
     response=>{
