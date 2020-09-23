@@ -480,6 +480,10 @@ background: #a202cc !important;
     font-size: 12px;
     color: #b6b6b6;
 }
+.input_m2
+{
+    margin-bottom: 20px;
+}
 .input_m2 label
 {
     color: #ff6a01;
@@ -487,6 +491,10 @@ background: #a202cc !important;
     margin-bottom: 2px;
     font-weight: 500;
     font-size: 14px;
+}
+.input_m2 input
+{
+    width: 100%;
 }
 .input_m2 textarea{
     width: 100%;
