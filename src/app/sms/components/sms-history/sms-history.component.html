@@ -17,8 +17,9 @@
 
 <div class="gride_m1">
 
-    <div class="row mb-30">
+   
       <form [formGroup] ="dateRangeSearchForm" (ngSubmit)="onSubmit(dateRangeSearchForm.value)">
+        <div class="row mb-30">
         <div class="col-xs-12 col-12 col-md-3 form-group">
           <label>Select Date Range</label>
             <input type="text" formControlName="dateRange"
@@ -33,8 +34,7 @@
             <button class="btn btn_m5 mt-30 mr-2">Reset</button>
             <!-- <button class="btn btn_m6 mt-30 mr-2">Download</button> -->
         </div>
-        </form>
- <div class="col-xs-12 col-12 col-md-2  offset-sm-3 form-group">
+        <div class="col-xs-12 col-12 col-md-2  offset-sm-3 form-group">
           <label>Select SMS Type</label>
              <select name="" #msgs (change)="getMsgsTypeHistory(msgs.value)" id="" class="form-control">
                <option value="campaigns">Campaign SMS</option>
@@ -42,6 +42,8 @@
              </select>
           </div> 
     </div>
+        </form>
+
 
 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead>
