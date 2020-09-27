@@ -62,6 +62,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.start();
+    $('#myModal').modal('show');
 
     this.loader.stop();
 
@@ -113,13 +114,11 @@ export class SignUpComponent implements OnInit {
       "phone": this.phonenumber,
       "otp": this.otp,
      };
-     console.log(otpverify);
      this.loader.start();
         this.SharedService.verifyPhoneNumber(otpverify)
           .subscribe(
             response=>{
               this.loader.stop();
-              console.log('klm',response);
               if(response['status_code'] == 200){
                 $('#myModal .close').trigger('click');
                  this.toastr.success('', "OTP is verified successfully!");
@@ -136,4 +135,25 @@ export class SignUpComponent implements OnInit {
               console.log("Some thing went wrong");  
          });
       }
+
+  reSendOtp(){
+    const otpverify = {
+      "action": "sendotp",
+      "phone": this.phonenumber,
+     };
+     this.loader.start();
+        this.SharedService.verifyPhoneNumber(otpverify)
+          .subscribe(
+            response=>{
+              this.loader.stop();
+              if(response['status_code'] == 200){
+                 this.toastr.success('', "OTP Sent to your registered mobile number!");
+               }else {
+                 this.toastr.warning('', response['error'].message);
+              }
+            },error =>{
+              this.loader.stop();
+              console.log("Some thing went wrong");  
+         });
+  }
 }

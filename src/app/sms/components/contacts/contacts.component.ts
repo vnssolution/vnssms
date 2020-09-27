@@ -62,6 +62,7 @@ export class ContactsComponent implements OnInit {
         {"type":"all",
          "group_id":params.groupId,
          "free_text":"",
+         "report":"download",
          "page":1,
          "per_page":10
         }
@@ -101,7 +102,6 @@ export class ContactsComponent implements OnInit {
         .subscribe(  
            response=>{
             this.loader.stop();
-            console.log('jakk',response);
             if(response['status_code'] == 200){  
                       this.statusList = response['data'];
                    }else {
@@ -121,7 +121,6 @@ export class ContactsComponent implements OnInit {
           "page":1,
           "per_page":10
         }
-        console.log(data);
    this.contactService.getContactList(data)
     .subscribe(  
        response=>{
