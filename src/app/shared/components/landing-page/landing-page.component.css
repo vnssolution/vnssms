@@ -1586,6 +1586,10 @@ body {
     #testimonials .testimonial-item p {
       margin-left: 0;
     }
+    #services .box
+    {
+      margin: 15px 0px;
+    }
   }
   
   @media (max-width: 574px) {
