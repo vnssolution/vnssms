@@ -56,7 +56,7 @@
               <!-- Menu Body -->
               <li class="user-body">
                 
-                    <a href="#" data-toggle="modal" data-target="#changePasswordPop" class="changePasswordPop">Change Password</a>
+                    <a href="#" data-toggle="modal" data-toggle="modal" data-target="#change_pwd_pop" class="changePasswordPop">Change Password</a>
                  
                 <!-- /.row -->
               </li>
@@ -80,4 +80,46 @@
     </nav>
   </header>
 
+<!-- Modal -->
+<div class="modal fade" id="change_pwd_pop" tabindex="-1" role="dialog" aria-labelledby="change_pwd_popLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="change_pwd_popLabel">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+  <div class="">
+    <div class="col-sm-12">
+      <div class="formInputArea ">
+          <input placeholder="Name" formControlName="" type="text" >
+          <label for="name">Old Password</label>
+          </div>
+  </div>
 
+  <div class="col-sm-12">
+    <div class="formInputArea ">
+        <input placeholder="Name" formControlName="" type="text" >
+        <label for="name">New Password</label>
+        </div>
+</div>
+
+
+<div class="col-sm-12">
+  <div class="formInputArea ">
+      <input placeholder="Name" formControlName="" type="text" >
+      <label for="name">confirm Password</label>
+      </div>
+</div>
+
+<div class="text-center">
+<button class="btn btn_m2 mb-30  mt-30 ">Submit</button>
+</div>
+
+  </div>
+
+    </div>
+  </div>
+</div>
