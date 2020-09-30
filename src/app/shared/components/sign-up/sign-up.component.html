@@ -87,8 +87,9 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         
           <h4 class="modal-title" id="myModalLabel">Enter 4 digit OTP Code</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <form  [formGroup]="verifyPhoneForm" (ngSubmit)="verfyPhoneSubmit(verifyPhoneForm.value)" >
         <div class="modal-body">
@@ -102,8 +103,8 @@
             <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:4}"></ng-otp-input>
         </div>
         <div class="text-center">
-        <button type="submit" class="btn btn_m2">Submit</button>
-        <button type="button" (click)="reSendOtp()" class="btn btn_m2">ReSendOTP</button>
+        <button type="submit" class="btn btn_m6 mr-2">Submit</button>
+        <button type="button" (click)="reSendOtp()" class="btn btn_m2">Re send OTP</button>
     </div>
     </div>
         </form>
