@@ -25,6 +25,9 @@ export class LandingPageComponent implements OnInit {
     return false;
   });
 
+  $('.menu_icon').click(function(){
+       $('.mobile_nenu').toggle();
+  });
   // Initiate the wowjs animation library
   var swiper = new Swiper('#testimonial', {
     slidesPerView: 1,
