@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 declare var $ : any;
 declare var Swiper: any;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,9 +10,13 @@ declare var Swiper: any;
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    var userData = JSON.parse(localStorage.getItem("vns_auth_user"));
+    if(userData != null){
+      this.router.navigate(["vns/dashboard"]);
+    }
     // Back to top button
   $(window).scroll(function() {
     if ($(this).scrollTop() > 100) {

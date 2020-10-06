@@ -35,10 +35,15 @@ dtElement: DataTableDirective;
   }
 
   createGroup(name:string){
+    if(name ==''){
+      this.toastr.warning('', 'Group name is required'); return false;
+    }
+    this.loader.start();
     const data = {"action":"create","group_name":name}
     this.contactService.manageGroup(data)
               .subscribe(  
                  response=>{
+      this.loader.stop();
                   if(response['status_code'] == 200){  
                            this.toastr.success('Success', response['success'].message);
                            this.getGroupsList();
@@ -97,8 +102,10 @@ dtElement: DataTableDirective;
         this.contactService.uploadContacts(jsonData)
               .subscribe(  
                  response=>{
+          this.loader.stop();
                   if(response['status_code'] == 200){  
                            this.toastr.success('Success', response['success'].message);
+                           this.getGroupsList();
                           }else {
                             this.toastr.warning('', response['error'].message);
                           }

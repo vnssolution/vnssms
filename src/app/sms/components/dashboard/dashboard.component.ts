@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loader: NgxUiLoaderService,) { }
 
   ngOnInit(): void {
+    this.loader.start();
+    this.loader.stop();
   }
 
 }

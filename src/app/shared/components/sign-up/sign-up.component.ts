@@ -1,6 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder,FormGroup, Validators, FormControl } from '@angular/forms';
-import { MustMatch } from '../../../helpers/must-match.validator';
 import { SharedService } from '../../../services/shared.service'
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -62,8 +61,6 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.start();
-    $('#myModal').modal('show');
-
     this.loader.stop();
 
   }

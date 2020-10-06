@@ -64,4 +64,9 @@ export class ContactService {
         let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.sentHistory;    
         return this.httpClient.post(apiUrl, data, { headers: this.reqHeader });
       }
+      getUserData():Observable<any>
+      { 
+        let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.getUserDetails;    
+        return this.httpClient.post(apiUrl, localStorage.getItem('vns_auth_token'),{ headers: this.reqHeader });
+      }
 }

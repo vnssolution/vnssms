@@ -4,6 +4,7 @@ import { ToastrService  } from 'ngx-toastr';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from "@angular/router";
 import { ContactService } from '../../services/contact.service';
+import { VnsSharedService } from '../../services/vns-shared.service';
 import * as XLSX from 'xlsx'; 
 import * as FileSaver from 'file-saver'; 
 import * as Papa from 'papaparse';
@@ -31,8 +32,10 @@ export class ContactsComponent implements OnInit {
  groupId:any;
  phoneNumbersList=[];
  createWhiteListForm:FormGroup;
+ totalsmscount:any;
   constructor(private toastr:ToastrService,private contactService:ContactService,
-    private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,private formBuilder: FormBuilder,
+    private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,
+    private formBuilder: FormBuilder, private vnsservice: VnsSharedService
     ) { 
       this.dtOptions = {
         pagingType: 'full_numbers',
@@ -156,7 +159,7 @@ export class ContactsComponent implements OnInit {
     });
   }
   onSubmit(post:any){
-    if(post == ''){
+    if(post['contacts'][0]['contact_name'] == '' && post['contacts'][0]['contact_phone']==''){
        this.toastr.warning('','Please enter valid data'); return false;
     }
     this.loader.start();
@@ -203,6 +206,9 @@ export class ContactsComponent implements OnInit {
     if(response['status_code'] == 200){  
               this.toastr.success('', response['success'].message);
               $('#createwhitelistModal .close').trigger('click');
+              this.vnsservice.totalsmscount.subscribe(totalCredits =>{
+                this.totalsmscount.next(totalCredits);
+              });
             }else {
               this.toastr.warning('', response['error'].message);
             }

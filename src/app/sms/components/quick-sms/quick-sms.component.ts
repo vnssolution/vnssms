@@ -4,6 +4,7 @@ import { ToastrService  } from 'ngx-toastr';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from "@angular/router";
 import { ContactService } from '../../services/contact.service';
+import { VnsSharedService } from '../../services/vns-shared.service';
 import * as XLSX from 'xlsx'; 
 import * as FileSaver from 'file-saver'; 
 import * as Papa from 'papaparse';
@@ -25,10 +26,11 @@ export class QuickSmsComponent implements OnInit {
   whiteList:any;
   whiteListContactsCount:any;
   phoneNumbersList=[];
+ totalsmscount:any;
   
   constructor(private toastr:ToastrService,private contactService:ContactService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,private vnsservice:VnsSharedService) { }
 
   ngOnInit(): void {
     this.GroupsList();
@@ -122,6 +124,9 @@ export class QuickSmsComponent implements OnInit {
       this.loader.stop();
     if(response['status_code'] == 200){  
               this.toastr.success('', response['success'].message);
+              this.vnsservice.totalsmscount.subscribe(totalCredits =>{
+                this.totalsmscount.next(totalCredits);
+              });
             }else {
               this.toastr.warning('', response['error'].message);
             }

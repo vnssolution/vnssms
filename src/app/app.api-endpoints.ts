@@ -11,4 +11,5 @@ export class AppApiEndpoints{
     public sendMessage = "sendMessage";
     public getStatusList = "getStatusList";
     public sentHistory ="sentHistory";
+    public getUserDetails = "getUserDetails"
 }

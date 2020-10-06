@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { VnsSharedService } from '../../services/vns-shared.service';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   userData:any;
-
-  constructor(private router:Router) { }
+  totalCredits:any;
+  constructor(private router:Router, private vnsservice:VnsSharedService) { 
+    this.vnsservice.totalsmscount.subscribe(totalCredits =>{
+      this.totalCredits = totalCredits;
+    })
+  }
 
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem("vns_auth_user"));
-    console.log(this.userData);
   }
   
   logOut(){
