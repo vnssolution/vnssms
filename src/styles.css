@@ -768,6 +768,10 @@ li{
     {
         top: 68%;
     }
-
+    table.dataTable {
+    
+        overflow-x: auto;
+        display: block;
+    }
 
 }
