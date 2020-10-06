@@ -122,15 +122,15 @@ a{
     margin: 0 auto;
     background-size: 41px;
     cursor: pointer;
-    background-position: 92% 0px;
+    background-position:100% -5px;
 }
 
 .custom-upload .fake-file input
 {
     font-size:16px;
     height:40px;
-    width:300px;
-    background: white;
+    width: 100%;
+    background: transparent;
     border: none;
     border-bottom: solid 1px #ccc;
     height: 38px;
@@ -745,4 +745,29 @@ li{
     position: relative;
     margin: 3px 0;
     font-weight: 700;
+}
+
+
+@media(max-width:767px){
+    .user-menu.link_m1 .dropdown-toggle
+    {
+           display: none;
+    }
+    .notifications-menu .dropdown-toggle{
+      position: relative;
+    }
+    .notifications-menu .dropdown-menu
+    {
+        width:280px !important;
+    }
+    .main-header .logo::before
+    {
+        left:15px
+    }
+    .navbar-custom-menu>.navbar-nav>li>.dropdown-menu
+    {
+        top: 68%;
+    }
+
+
 }
