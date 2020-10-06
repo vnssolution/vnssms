@@ -23,11 +23,12 @@
             <div class="col-sm-4">
                 <div class="create_group">
                     <div class="formInputArea">
-                        <input placeholder="Group Name" #groupName  ([ngModal])="groupName" type="text" id="firstName">
+                        <input placeholder="Group Name" [(ngModel)]="groupName" type="text" id="firstName">
                         <label for="name">Group Name<span class="imp_star">*</span></label>
                         <img src="assets/img/icon/user.png" alt="" class="input_icon">
                     </div>
-                    <button class="btn" (click)="createGroup(groupName.value)" >Create</button>
+                    <button *ngIf="editGroupId == ''"class="btn" (click)="manageGroup(groupName,'')" >Create</button>
+                    <button *ngIf="editGroupId != ''" class="btn" (click)="manageGroup(groupName,editGroupId)" >Update</button>
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-4">
@@ -84,7 +85,7 @@
                       <td>
                           <ul class="list_m1">
                               <li class="color_1" (click)="getContacts(group.id)" ><i class="fa fa-eye" aria-hidden="true"></i> </li>
-                              <li class="color_2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></li>
+                              <li class="color_2" (click)="editGroup(group.id,group.group_name)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></li>
                               <li class="color_3" (click)="deleteGroup(group.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i></li>
                               <!-- <li class="color_4"><i class="fa fa-download" aria-hidden="true"></i></li> -->
                           </ul>

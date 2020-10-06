@@ -10,6 +10,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { start } from 'repl';
+import { Identifiers } from '@angular/compiler';
 declare var jQuery: any;
 declare var $: any;
 
@@ -24,6 +25,9 @@ grouplist:any;
 groupId:any;
 dtOptions: any;
 dtTrigger = new Subject();
+groupName:any='';
+editGroupId:any='';
+groupData:any;
 @ViewChild(DataTableDirective, { static: true })
 dtElement: DataTableDirective;
 
@@ -34,18 +38,22 @@ dtElement: DataTableDirective;
     this.getGroupsList();
   }
 
-  createGroup(name:string){
+  manageGroup(name:string,id){
     if(name ==''){
       this.toastr.warning('', 'Group name is required'); return false;
     }
     this.loader.start();
-    const data = {"action":"create","group_name":name}
-    this.contactService.manageGroup(data)
+       this.groupData = { "action":"create","group_name":name }
+    if(id !=''){
+       this.groupData = { "action":"update","group_id":id,"group_name":name }
+      }
+    this.contactService.manageGroup(this.groupData)
               .subscribe(  
                  response=>{
       this.loader.stop();
                   if(response['status_code'] == 200){  
                            this.toastr.success('Success', response['success'].message);
+                           this.groupName = '';
                            this.getGroupsList();
                           }else {
                             this.toastr.warning('', response['error'].message);
@@ -173,5 +181,9 @@ dtElement: DataTableDirective;
                 console.log("Some thing went wrong");
     });
    }
+  }
+  editGroup(GroupId:number, groupname:string){
+     this.groupName = groupname;
+     this.editGroupId = GroupId;
   }
 }
