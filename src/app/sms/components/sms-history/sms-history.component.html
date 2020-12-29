@@ -44,8 +44,8 @@
     </div>
         </form>
 
-
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <div class="table_m4">
+<table class="table">
   <thead>
       <tr>
           <th>S.no	</th>
@@ -59,7 +59,7 @@
   </thead>
   <tbody>
 
-<tr *ngFor="let msghstry of getMsgsHistory; let i = index;" >
+<tr *ngFor="let msghstry of getMsgsHistory | paginate: {itemsPerPage: 10,  currentPage: currentPage,  totalItems: totalCount } let i= index" >
   <td>{{i+1}}</td>
   <td>{{msghstry.from}}</td>
   <td>{{msghstry.campaign_name}}</td>
@@ -77,6 +77,9 @@
   </tbody>
  
 </table>
+</div>
+<div class="custom_pag_m1" *ngIf="totalCount > 5">
+  <pagination-controls (pageChange)="pageChanged($event,filters)" class="pagination custom_pagi"></pagination-controls>
 </div>
 <!-- page -->
 

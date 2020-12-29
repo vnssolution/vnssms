@@ -11,6 +11,8 @@ import * as Papa from 'papaparse';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+import { ExportExcelService } from '../export-excel.service';
+
 declare var jQuery: any;
 declare var $: any;
 
@@ -31,28 +33,26 @@ export class ContactsComponent implements OnInit {
  dtElement: DataTableDirective;
  groupId:any;
  phoneNumbersList=[];
- createWhiteListForm:FormGroup;
+ showSpinner: any = false;
+ currentPage = 1;
+ public pageInformation:any;
+ public totalCount:number=0; 
+
+ //createWhiteListForm:FormGroup;
  totalsmscount:any;
   constructor(private toastr:ToastrService,private contactService:ContactService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,
-    private formBuilder: FormBuilder, private vnsservice: VnsSharedService
+    private formBuilder: FormBuilder, private vnsservice: VnsSharedService, public ete:ExportExcelService
     ) { 
-      this.dtOptions = {
-        pagingType: 'full_numbers',
-        dom: 'lBfrtip',
-        responsive: true,
-        buttons: [
-          'csv', 'excel', 'pdf', 'print'
-        ]
-      };
 
-      this.createWhiteListForm = this.formBuilder.group({
-        //'whitelist_msg':['',Validators.required],
-       });
+      // this.createWhiteListForm = this.formBuilder.group({
+      //   //'whitelist_msg':['',Validators.required],
+      //  });
 
     }
  
   ngOnInit(): void {
+    this.showSpinner = true;
     this.addContactForm = this.formBuilder.group({
       'contacts':this.formBuilder.array([
         this.addContactFormGroup()
@@ -65,7 +65,7 @@ export class ContactsComponent implements OnInit {
         {"type":"all",
          "group_id":params.groupId,
          "free_text":"",
-         "report":"download",
+         "report":"",
          "page":1,
          "per_page":10
         }
@@ -74,10 +74,13 @@ export class ContactsComponent implements OnInit {
            response=>{
             this.loader.stop();
             if(response['status_code'] == 200){  
+              console.log('haii',response);
                       this.contactsList = response['data']['contact_list'];
+                      this.pageInformation = response['data']['pageInformation'];
+                      this.totalCount =  this.pageInformation.totalCount;
+                      this.currentPage = 1;  
+                      this.showSpinner = false;
                       this.getPhoneNumbers(this.contactsList);
-
-                      this.rerender();
                    }else {
                       this.toastr.warning('', response['error'].message);
                     }
@@ -120,7 +123,7 @@ export class ContactsComponent implements OnInit {
           {"type": status,
           "group_id":this.groupId,
           "free_text":"",
-          "report":"download",
+          "report":"",
           "page":1,
           "per_page":10
         }
@@ -130,9 +133,9 @@ export class ContactsComponent implements OnInit {
         this.loader.stop();
         if(response['status_code'] == 200){  
                   this.contactsList = response['data']['contact_list'];
+                  this.pageInformation = response['data']['pageInformation'];
+                  this.totalCount =  this.pageInformation.totalCount;
                   //this.getPhoneNumbers(this.contactsList);
-
-                  this.rerender();
                }else {
                   this.toastr.warning('', response['error'].message);
                 }
@@ -187,8 +190,8 @@ export class ContactsComponent implements OnInit {
       }    
   }
 
-  whiteListFormSubmit(post :any){
-    if(post['whitelist_msg'] == ''){
+  whiteListFormSubmit(){
+    if(this.templateMsg == ''){
       this.toastr.warning('','Please enter valid data'); return false;
      }
     this.loader.start();
@@ -217,6 +220,92 @@ export class ContactsComponent implements OnInit {
   });
   }
   
+  pageChanged(event,filters:any){
+
+    this.currentPage = event;
+   
+    this.loader.start();
+    const data = 
+          {"type": "all",
+          "group_id":this.groupId,
+          "free_text":"",
+          "report":"",
+          "page":this.currentPage,
+          "per_page":10
+        }
+   this.contactService.getContactList(data)
+    .subscribe(  
+       response=>{
+        this.loader.stop();
+        if(response['status_code'] == 200){  
+                  this.contactsList = response['data']['contact_list'];
+                  //this.getPhoneNumbers(this.contactsList);
+               }else {
+                  this.toastr.warning('', response['error'].message);
+                }
+                },error =>{
+                console.log("Some thing went wrong");
+    });
+  }
+
+  searchValue:any='';
+  searchList(event: any): void {  
+    this.searchValue = event.target.value;
+    this.contactsList = []; 
+    this.showSpinner = true;
+    const data = 
+          {"type": "all",
+          "group_id":this.groupId,
+          "free_text":event.target.value,
+          "report":"",
+          "page":1,
+          "per_page":10
+         }
+   this.contactService.getContactList(data)
+    .subscribe(  
+       response=>{
+        this.loader.stop();
+        if(response['status_code'] == 200)
+               {  
+                  this.showSpinner = false;
+                  this.contactsList = response['data']['contact_list'];
+                  this.pageInformation = response['data']['pageInformation'];
+                  this.totalCount =  this.pageInformation.totalCount;
+               }else {
+                this.showSpinner = false;
+                  this.toastr.warning('', response['error'].message);
+                }
+                },error =>{
+                  this.toastr.error('', error);
+                }); 
+           }
+
+           downloadReport() {
+            const body = {"type":"all","group_id":this.groupId,"free_text":this.searchValue,"report":"download","status" : "","page":1,"per_page":10}	
+            this.contactService.getContactList(body)
+            .subscribe(  
+               response=>{
+                this.contactsList = response['data']['contact_list'];
+                this.exportToExcel(this.contactsList);
+            });
+           }
+
+           dataForExcel = [];
+           exportToExcel(contactsList:any) {
+            this.dataForExcel=[];
+            contactsList.forEach((row: any) => {
+              this.dataForExcel.push(Object.values(row))
+            })
+           var year= new Date().getFullYear()          
+            let reportData = {
+              title: 'Contacts List -'+ year,
+              data: this.dataForExcel,
+              headers: Object.keys(this.contactsList[0])
+            }
+            this.ete.exportExcel(reportData,'Contacts');
+          }
+
+
   numberOnly(event:any): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -224,37 +313,5 @@ export class ContactsComponent implements OnInit {
     }
     return true;
   }
-
-  ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
-  }
-
-  rerender(): void {
-    try {
-   // this.ngxService.start();
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // Destroy the table first
-      dtInstance.destroy();
-      // Call the dtTrigger to rerender again
-      this.dtTrigger.next();
-    });
-  } catch (err) {
-    console.log(err);
-  }
-    this.loader.stop();
-  }
-  ngAfterViewInit() {
-    // this.ngxService.start();
-     this.dtTrigger.next();
-     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-       dtInstance.on('draw.dt', function () {
-         if (jQuery('.dataTables_empty').length > 0) {
-           jQuery('.dataTables_empty').remove();
-         }
-       });
-     });
-    // this.ngxService.start();
-   }
 
 }

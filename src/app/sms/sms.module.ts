@@ -16,6 +16,7 @@ import { SmsHistoryComponent } from './components/sms-history/sms-history.compon
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { UserAccountsComponent } from './components/user-accounts/user-accounts.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent, SmsHistoryComponent, ProfileSettingsComponent, UserAccountsComponent],
   imports: [
@@ -24,7 +25,8 @@ import { UserAccountsComponent } from './components/user-accounts/user-accounts.
     DataTablesModule,
     FormsModule,
     ReactiveFormsModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    NgxPaginationModule
   ]
 })
 export class SmsModule { }

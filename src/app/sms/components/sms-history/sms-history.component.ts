@@ -22,6 +22,9 @@ export class SmsHistoryComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: true })
   dtElement: DataTableDirective;
   getMsgsHistory:any;
+  public pageInformation:any;
+  public totalCount:number=0; 
+  currentPage = 1;
 
   constructor(private toastr:ToastrService,private contactService:ContactService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,private formBuilder: FormBuilder,
@@ -58,8 +61,9 @@ export class SmsHistoryComponent implements OnInit {
             this.loader.stop();
             if(response['status_code'] == 200){  
                      this.getMsgsHistory = response['data']['sent_history_list'];
-                     console.log(this.getMsgsHistory);
-                     this.rerender();
+                     this.pageInformation = response['data']['pageInformation'];
+                     this.totalCount =  this.pageInformation.totalCount;
+                     this.currentPage = 1;  
                    }else {
                       this.toastr.warning('', response['error'].message);
                     }
@@ -67,42 +71,14 @@ export class SmsHistoryComponent implements OnInit {
                     console.log("Some thing went wrong");
         });
   }
+  
   onSubmit(postData:any){
     if(postData['dateRange']==''){
       this.toastr.warning('', "Please select date"); return false;
-    }
-    console.log(postData['dateRange'][0]);
- 
-  }
-  ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
+    } 
   }
 
-  rerender(): void {
-    try {
-   // this.ngxService.start();
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // Destroy the table first
-      dtInstance.destroy();
-      // Call the dtTrigger to rerender again
-      this.dtTrigger.next();
-    });
-  } catch (err) {
-    console.log(err);
-  }
-    this.loader.stop();
-  }
-  ngAfterViewInit() {
-    // this.ngxService.start();
-     this.dtTrigger.next();
-     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-       dtInstance.on('draw.dt', function () {
-         if (jQuery('.dataTables_empty').length > 0) {
-           jQuery('.dataTables_empty').remove();
-         }
-       });
-     });
-    // this.ngxService.start();
-   }
+
+
+ 
 }

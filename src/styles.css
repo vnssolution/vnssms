@@ -746,6 +746,36 @@ li{
     margin: 3px 0;
     font-weight: 700;
 }
+.table_m4 th,
+.table_m4 td
+{
+    font-size: 13px;
+}
+.table_m4 th
+{
+    background: #3f3f40;
+    color: #fff;
+}
+.btn,
+.form-control
+{
+    font-size: 13px;
+}
+.custom_pag_m1{
+    overflow: hidden;
+}
+.custom_pag_m1 .custom_pagi{
+    float: right;
+    font-size: 12px;
+}
+.custom_pag_m1 .ngx-pagination
+{
+    margin: 0;
+}
+.custom_pag_m1 .ngx-pagination .current
+{
+    background: #3f3f40;
+}
 
 
 @media(max-width:767px){

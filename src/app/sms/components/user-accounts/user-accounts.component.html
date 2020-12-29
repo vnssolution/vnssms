@@ -20,39 +20,52 @@
         <div class="col-sm-2">
             <button class="btn btn_m2 mt-20" data-toggle="modal" data-target="#exampleModal">Create New user</button>
         </div>
+        <div class="form-group form-group-search mb-2 col-md-3 offset-sm-4">
+            <label class="sr-only">Search</label>
+            <input type="search" class="form-control" value="" name="search" placeholder="Search..." (input)="searchList($event)">
+        </div>
     </div>
-
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" >
+    
+    <div class="table_m4">
+<table  class="table">
   <thead>
       <tr>
           <th>S.No</th>
           <th>Name</th>
+          <th>Phone</th>
           <th>Total</th>
           <th>Used</th>
           <th>Balance</th>
-          <th>ID</th>
+          <!-- <th>ID</th> -->
           <th>History</th>
           <th>Credits</th>
-          <th>Login</th>
+          <!-- <th>Login</th> -->
       </tr>
   </thead>
   <tbody>
-   <tr >
-       <td>API</td>
-       <td>50000</td>
-       <td>26804</td>
-       <td>23196</td>
-       <td>ID</td>
+        <div style="margin-top: 20%;" *ngIf="showSpinner" class="d-flex justify-content-center">
+        <div style="width: 2rem;height: 2rem;" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+   <tr *ngFor="let data of accountsList; let i = index;">
+       <td>{{i+1}}</td>
+       <td>{{data.username}}</td>
+       <td>{{data.phone}}</td>
+       <td>{{data.total_credits}}</td>
+       <td>{{data.used_credits}}</td>
+       <td>{{data.balance_credits}}</td>
        <td>History</td>
        <td>+ Credits</td>
-       <td></td>
-      
-     
+       <!-- <td></td> -->
    </tr>
      
   </tbody>
  
 </table>
+</div>
+<div class="custom_pag_m1" *ngIf="totalCount > 5">
+    <pagination-controls (pageChange)="pageChanged($event,filters)" class="pagination custom_pagi"></pagination-controls>
 </div>
 <!-- page -->
 
@@ -67,53 +80,70 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form>
+        <form [formGroup] ="addUserForm" (ngSubmit)="onSubmit(addUserForm.value)">
 
             <div class="">
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
-                        <label for="name">Username</label>
+                        <input placeholder="username" type="text" formControlName="username" >
+                        <label for="username">Username</label>
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                        </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="formInputArea ">
+                        <input placeholder="email"  type="text" formControlName="email" >
+                        <label for="email">Email</label>
+                        </div>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                         </div>
                 </div>
 
 
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
-                        <label for="name">Email</label>
+                        <input placeholder="mobile" type="text" formControlName="mobile" >
+                        <label for="mobile">Mobile</label>
+                        </div>
+
+                        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobile.errors.required">Phone is required</div>
+                            <div *ngIf="f.mobile.errors.minlength">
+                                Phone must be at least 10 numbers.
+                             </div>
+                             <div *ngIf="f.mobile.errors.maxlength">
+                                Phone can be max 10 numbers.
+                             </div>
+                            </div>
+                        </div>
+
+
+                <div class="col-sm-12">
+                    <div class="formInputArea ">
+                        <input placeholder="orgnaization" type="text" formControlName="orgnaization" >
+                        <label for="orgnaization">Organization</label>
+                        </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="formInputArea ">
+                        <input placeholder="senderId" type="text" formControlName="senderId" >
+                        <label for="senderId">Sender Id</label>
                         </div>
                 </div>
 
 
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
-                        <label for="name">Mobile</label>
+                        <input placeholder="credits" type="text" formControlName="credits" >
+                        <label for="credits">Credits</label>
                         </div>
                 </div>
-
-
-                <div class="col-sm-12">
-                    <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
-                        <label for="name">Organization</label>
-                        </div>
-                </div>
-
-
-                <div class="col-sm-12">
-                    <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
-                        <label for="name">Credits</label>
-                        </div>
-                </div>
-
-
-            
-
-              
-
             </div>
       
         <div class="modal-footer">
