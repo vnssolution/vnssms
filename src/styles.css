@@ -751,10 +751,17 @@ li{
 {
     font-size: 13px;
 }
-.table_m4 th
+.table_m4 th,
+.dataTable th
 {
     background: #3f3f40;
     color: #fff;
+    font-size: 13px;
+    font-weight: 500 !important;
+}
+.dataTable td
+{
+    font-size: 13px;  
 }
 .btn,
 .form-control
@@ -777,6 +784,14 @@ li{
     background: #3f3f40;
 }
 
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting
+{
+    background-image: none !important;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 20px !important;
+}
 
 @media(max-width:767px){
     .user-menu.link_m1 .dropdown-toggle
