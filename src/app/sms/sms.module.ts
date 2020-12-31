@@ -17,8 +17,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { UserAccountsComponent } from './components/user-accounts/user-accounts.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CreditHistoryComponent } from './creditHistory/credit-history/credit-history.component';
 @NgModule({
-  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent, SmsHistoryComponent, ProfileSettingsComponent, UserAccountsComponent],
+  declarations: [DashboardComponent,MenuComponent, LayoutOneComponent,HeaderComponent, ContactsComponent, GroupsComponent, TemplatesComponent, QuickSmsComponent, SmsHistoryComponent, ProfileSettingsComponent, UserAccountsComponent, CreditHistoryComponent],
   imports: [
     CommonModule,
     SmsRoutingModule,

@@ -14,4 +14,5 @@ export class AppApiEndpoints{
     public getUserDetails = "getUserDetails";
     public userAccountList = "userAccountList";
     public addUserAccount = "addUserAccount";
+    public updateProfile = "updateProfile";
 }

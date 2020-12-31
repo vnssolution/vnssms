@@ -74,7 +74,6 @@ export class ContactsComponent implements OnInit {
            response=>{
             this.loader.stop();
             if(response['status_code'] == 200){  
-              console.log('haii',response);
                       this.contactsList = response['data']['contact_list'];
                       this.pageInformation = response['data']['pageInformation'];
                       this.totalCount =  this.pageInformation.totalCount;

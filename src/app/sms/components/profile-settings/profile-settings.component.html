@@ -23,17 +23,17 @@
     <div class=" imgUp">
         <div class="imagePreview"></div>
     <label class="btn btn-primary">
-        Upload Logo<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+        Upload Logo <input type="file" class="uploadFile img" (change)="profilePicSelection($event)" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
                     </label>
       </div><!-- col-2 -->
   </div>
   <div class="col-sm-5">
      <ul class="list_m5">
-        <i class="fa fa-pencil-square-o edit_icon" aria-hidden="true"  data-toggle="modal" data-target="#exampleModal"></i>
-         <li><span>Name</span><span>:Jobsmama</span></li>
-         <li><span>Email</span><span>:ugenderkumar@gmail.com</span></li>
-         <li><span>Mobile</span><span>:7329800121</span></li>
-         <li><span>Organization</span><span>:Jobsmama</span></li>
+         <i class="fa fa-pencil-square-o edit_icon" aria-hidden="true" (click)="updateForm()"></i>
+         <li><span>Name</span><span>:{{userData?.name}}</span></li>
+         <li><span>Email</span><span>:{{userData?.email}}</span></li>
+         <li><span>Mobile</span><span>:{{userData?.phone}}</span></li>
+         <li><span>Organization</span><span>:{{userData?.organization}}</span></li>
      </ul>
   </div>
 
@@ -53,17 +53,17 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form>
+        <form [formGroup] ="updateUserForm" (ngSubmit)="onSubmit(updateUserForm.value)" >
 
             <div class="">
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
+                        <input placeholder="Name" formControlName="username" type="text" >
                         <label for="name">Name</label>
                         </div>
                 </div>
             
-                <div class="col-sm-12">
+                <!-- <div class="col-sm-12">
                     <div class="formInputArea ">
                         <input placeholder="Name" formControlName="template_name" type="text" >
                         <label for="name">Current Password
@@ -77,12 +77,12 @@
                         <label for="name">New Password
                         </label>
                         </div>
-                </div>
+                </div> -->
 
                 
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
+                        <input placeholder="Name" formControlName="email" type="text" >
                         <label for="name">Email
                         </label>
                         </div>
@@ -92,7 +92,7 @@
                 
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
+                        <input placeholder="Name" formControlName="mobile" type="text" >
                         <label for="name">Mobile
                         </label>
                         </div>
@@ -102,7 +102,7 @@
                 
                 <div class="col-sm-12">
                     <div class="formInputArea ">
-                        <input placeholder="Name" formControlName="template_name" type="text" >
+                        <input placeholder="Name" formControlName="orgnaization" type="text" >
                         <label for="name">Organization
 
                         </label>

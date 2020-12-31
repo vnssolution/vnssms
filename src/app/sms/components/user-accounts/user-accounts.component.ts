@@ -25,10 +25,24 @@ export class UserAccountsComponent implements OnInit {
 
   constructor(private toastr:ToastrService,private accountService:AccountService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder) { 
+
+      this.addUserForm = this.formBuilder.group({
+        'username':['',Validators.required],
+        'email': ['', [
+          Validators.required, 
+          Validators.email,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+           ]],
+        'mobile': ['',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+        'orgnaization':[''],
+        'credits': [''],
+        'senderId': [''],
+    
+      });
+    }
 
   ngOnInit(): void {
-    this.addUser()
     this.loader.start();
     this.getAccountlistData();
  }
@@ -84,22 +98,6 @@ searchList(event: any): void {
         });
 }
 
-
- addUser(){
-  this.addUserForm = this.formBuilder.group({
-    'username':['',Validators.required],
-    'email': ['', [
-      Validators.required, 
-      Validators.email,
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-       ]],
-    'mobile': ['',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    'orgnaization':[''],
-    'credits': [''],
-    'senderId': [''],
-
-  });
- }
 
  get f() { return this.addUserForm.controls; }
 

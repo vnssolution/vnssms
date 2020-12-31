@@ -8,7 +8,7 @@
               <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                       <li class="breadcrumb-item">
-                          <a ng-reflect-router-link="/dashboard" href="/dashboard">Home</a>
+                          <a ng-reflect-router-link="vns/dashboard" href="vns/dashboard">Home</a>
                       </li><li aria-current="page" class="breadcrumb-item active">Normal User Accounts </li>
                   </ol></nav></div>
               </div></div>
@@ -43,21 +43,20 @@
       </tr>
   </thead>
   <tbody>
-        <div style="margin-top: 20%;" *ngIf="showSpinner" class="d-flex justify-content-center">
-        <div style="width: 2rem;height: 2rem;" class="spinner-border" role="status">
+       <div style="margin-top: 20%;" *ngIf="showSpinner" class="d-flex justify-content-center">
+         <div style="width: 2rem;height: 2rem;" class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
         </div>
-    </div>
-   <tr *ngFor="let data of accountsList; let i = index;">
+      </div>
+   <tr *ngFor="let data of accountsList | paginate: {itemsPerPage: 10,  currentPage: currentPage,  totalItems: totalCount } let i= index">
        <td>{{i+1}}</td>
        <td>{{data.username}}</td>
        <td>{{data.phone}}</td>
        <td>{{data.total_credits}}</td>
        <td>{{data.used_credits}}</td>
        <td>{{data.balance_credits}}</td>
-       <td>History</td>
+       <td><a [routerLink]="['../credit-history', data.id]" >view History </a></td>
        <td>+ Credits</td>
-       <!-- <td></td> -->
    </tr>
      
   </tbody>
