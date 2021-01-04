@@ -44,7 +44,7 @@ export class CreditHistoryComponent implements OnInit {
 getCreditHistory(data){
   this.credHistory =[];
   this.showSpinner = true;
-  this.accountService.getSubAccountsList(data)
+  this.accountService.manageUserAccounts(data)
   .subscribe(  
      response=>{
       this.loader.stop();

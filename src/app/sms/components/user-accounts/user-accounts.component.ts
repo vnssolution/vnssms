@@ -22,6 +22,7 @@ export class UserAccountsComponent implements OnInit {
   public pageInformation:any;
   public totalCount:number=0; 
   showSpinner: any = false;
+  userData:any;
 
   constructor(private toastr:ToastrService,private accountService:AccountService,
     private loader:NgxUiLoaderService,private route: ActivatedRoute,private router:Router,
@@ -60,13 +61,14 @@ searchList(event: any): void {
     this.fetchSubAccountList(data);
 }
  fetchSubAccountList(data){
-  this.accountService.getSubAccountsList(data)
+  this.accountService.manageUserAccounts(data)
   .subscribe(  
      response=>{
       this.loader.stop();
       if(response['status_code'] == 200){  
                this.showSpinner = false;
                this.accountsList = response['data']['user_list'];
+               console.log('jalll',this.accountsList);
                this.pageInformation = response['data']['pageInformation'];
                this.totalCount =  this.pageInformation.totalCount;
                this.currentPage = 1;  
@@ -82,7 +84,7 @@ searchList(event: any): void {
   this.currentPage = event;
   this.loader.start();
   const data = { "action" : "sub_accounts","free_text":"","page":this.currentPage,"per_page":10}
-  this.accountService.getSubAccountsList(data)
+  this.accountService.manageUserAccounts(data)
   .subscribe(  
      response=>{
       this.loader.stop();
@@ -103,15 +105,6 @@ searchList(event: any): void {
 
  onSubmit(post:any){
    this.submitted = true;
-  //  const invalid = [];
-  //  const controls = this.addUserForm.controls;
-  //  for (const name in controls) {
-  //      if (controls[name].invalid) {
-  //          invalid.push(name);
-  //      }
-  //  }
-  //  console.log(invalid);
-  //  return invalid;
    if (this.addUserForm.invalid) {     
      console.log("invalid"); return false;
     } 
@@ -133,9 +126,9 @@ searchList(event: any): void {
          this.loader.stop();
          if(response['status_code'] == 200){
            this.toastr.success('Success', response['success'].message);
-
            const data = { "action" : "sub_accounts","free_text":"","page":1,"per_page":10}
            this.fetchSubAccountList(data);
+           $("#exampleModal").trigger("click");
          }else {
            this.toastr.warning('', response['error'].message);
          } 
@@ -145,6 +138,34 @@ searchList(event: any): void {
    }); 
  }
 
+ userId:any;
+ getUserData(id){
+   this.userId= id;
+   this.userData = this.accountsList.filter(x => x.id === id)[0];
+   $("#addcreditModal").modal("show");
+   console.log('jalendra',this.userData);
+ }
+
+ addCredits(credits){
+  const data = {"action":"add_credits","user_id":this.userId,"credits":credits}
+ console.log(data);
+  this.accountService.manageUserAccounts(data)
+  .subscribe(
+      response=>{
+        this.loader.stop();
+        if(response['status_code'] == 200){
+          this.toastr.success('Success', response['success'].message);
+          $("#addcreditModal").trigger("click");
+          const data = { "action" : "sub_accounts","free_text":"","page":1,"per_page":10}
+          this.fetchSubAccountList(data);
+        }else {
+          this.toastr.warning('', response['error'].message);
+        } 
+      },error =>{
+        this.loader.stop();
+        console.log("Some thing went wrong");  
+  }); 
+ }
 }
 
 

@@ -56,7 +56,7 @@
        <td>{{data.used_credits}}</td>
        <td>{{data.balance_credits}}</td>
        <td><a [routerLink]="['../credit-history', data.id]" >view History </a></td>
-       <td>+ Credits</td>
+       <td (click)="getUserData(data.id)">+ Credits</td>
    </tr>
      
   </tbody>
@@ -149,6 +149,55 @@
            <button type="submit" class="btn btn-primary" >Save</button>
         </div>
       </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="addcreditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Credits </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+            <div class="">
+                <div class="col-sm-12">
+                    <div class="formInputArea ">
+                        <!-- <input placeholder="username" type="text" formControlName="username" > -->
+                        <label for="username">Username: {{userData?.username}}</label>
+                        </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <div class="formInputArea ">
+                        <!-- <input placeholder="mobile" type="text" formControlName="mobile" > -->
+                        <label for="mobile">Mobile: {{userData?.phone}}</label>
+                        </div>
+                        </div>
+
+
+                <div class="col-sm-12">
+                    <div class="formInputArea ">
+                        <!-- <input placeholder="Credits" type="text" formControlName="Credits" > -->
+                        <label for="credits">Credits: {{userData?.total_credits}}</label>
+                        </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="formInputArea ">
+                        <input placeholder="credits" type="text" #cr >
+                        <label for="credits">Credits</label>
+                        </div>
+                </div>
+            </div>
+      
+        <div class="modal-footer">
+           <button type="button" class="btn btn-primary" (click)="addCredits(cr.value)" >Save</button>
+        </div>
       </div>
     </div>
   </div>

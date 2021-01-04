@@ -18,7 +18,7 @@ export class AccountService {
         'Authorization': 'Bearer ' + localStorage.getItem('vns_auth_token'),
       });
     }
-    getSubAccountsList(data:any):Observable<any>
+    manageUserAccounts(data:any):Observable<any>
     { 
       let apiUrl = this._appSettings.API_NAMESPACE + this.appapiEndpoint.userAccountList;   
       return this.httpClient.post(apiUrl, data,{ headers: this.reqHeader });
