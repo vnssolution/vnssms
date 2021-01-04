@@ -56,7 +56,7 @@
        <td>{{data.used_credits}}</td>
        <td>{{data.balance_credits}}</td>
        <td><a [routerLink]="['../credit-history', data.id]" >view History </a></td>
-       <td (click)="getUserData(data.id)">+ Credits</td>
+       <td (click)="getUserData(data.id)" style="cursor: pointer;">+ Credits</td>
    </tr>
      
   </tbody>
@@ -165,39 +165,45 @@
         </div>
             <div class="">
                 <div class="col-sm-12">
-                    <div class="formInputArea ">
-                        <!-- <input placeholder="username" type="text" formControlName="username" > -->
-                        <label for="username">Username: {{userData?.username}}</label>
-                        </div>
+                    <div class="table_m4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Mobile</th>
+                                    <th>Credits</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{userData?.username}}</td>
+                                    <td>{{userData?.phone}}</td>
+                                    <td> {{userData?.total_credits}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                 
                 </div>
 
 
-                <div class="col-sm-12">
-                    <div class="formInputArea ">
-                        <!-- <input placeholder="mobile" type="text" formControlName="mobile" > -->
-                        <label for="mobile">Mobile: {{userData?.phone}}</label>
-                        </div>
-                        </div>
+            
 
 
-                <div class="col-sm-12">
-                    <div class="formInputArea ">
-                        <!-- <input placeholder="Credits" type="text" formControlName="Credits" > -->
-                        <label for="credits">Credits: {{userData?.total_credits}}</label>
-                        </div>
-                </div>
 
-                <div class="col-sm-12">
-                    <div class="formInputArea ">
+                <div class="col-sm-12 mb-4" >
+                    <div class="formInputArea " style="width: 200px;    display: inline-flex; margin-right: 15px;">
                         <input placeholder="credits" type="text" #cr >
                         <label for="credits">Credits</label>
                         </div>
+                        <button type="button" class="btn btn-primary" (click)="addCredits(cr.value)" >Add</button>
                 </div>
+                
             </div>
       
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
            <button type="button" class="btn btn-primary" (click)="addCredits(cr.value)" >Save</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
