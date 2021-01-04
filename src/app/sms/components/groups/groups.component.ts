@@ -186,5 +186,9 @@ dtElement: DataTableDirective;
   editGroup(GroupId:number, groupname:string){
      this.groupName = groupname;
      this.editGroupId = GroupId;
+   
+     $('html, body').animate({
+      scrollTop: $('.gride_m1').offset().top
+  }, 'slow');
   }
 }
