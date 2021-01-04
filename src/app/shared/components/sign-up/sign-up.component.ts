@@ -49,7 +49,8 @@ export class SignUpComponent implements OnInit {
         'mobile': ['',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
         'email': ['', [
                Validators.required, 
-               Validators.email,
+               Validators.email, 
+               
                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
                 ]],
                 

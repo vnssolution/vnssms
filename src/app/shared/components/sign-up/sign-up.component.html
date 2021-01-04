@@ -20,49 +20,50 @@
                 <input type="text" name="username" formControlName="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                 <label for="name">Username<span class="imp_star">*</span></label>
                 <img src="assets/img/icon/user.png" alt="" class="input_icon">
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Username is required</div>
-                </div>
+              
             </div>
+            <div *ngIf="submitted && f.username.errors" class="errors">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+          </div>
   
             <div class="formInputArea">
                 <input type="email" name="email" formControlName="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                 <label for="name">Email<span class="imp_star">*</span></label>
                 <img src="assets/img/icon/key.png" alt=""  class="input_icon">
-                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">Email is required</div>
-                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                </div>
             </div>
+            <div *ngIf="submitted && f.email.errors" class="errors">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
            
             <div class="formInputArea">
                 <input type="text" name="mobile" formControlName="mobile" maxlength="10" id="mobile" tabindex="1" class="form-control" placeholder="Mobile" value="">
                 <label for="name">Phone Number<span class="imp_star">*</span></label>
               <img src="assets/img/icon/user.png" alt="" class="input_icon">
-              <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
-                <div *ngIf="f.mobile.errors.required">Phone is required</div>
-                <div *ngIf="f.mobile.errors.minlength">
-                    Phone must be at least 10 numbers.
-                 </div>
-                 <div *ngIf="f.mobile.errors.maxlength">
-                    Phone can be max 10 numbers.
-                 </div>
-                </div>
           </div>
+          <div *ngIf="submitted && f.mobile.errors" class="errors">
+            <div *ngIf="f.mobile.errors.required">Phone is required</div>
+            <div *ngIf="f.mobile.errors.minlength">
+                Phone must be at least 10 numbers.
+             </div>
+             <div *ngIf="f.mobile.errors.maxlength">
+                Phone can be max 10 numbers.
+             </div>
+            </div>
   
           <div class="formInputArea">
             <input type="text" name="orgnaization" formControlName="orgnaization" id="orgnaization" tabindex="1" class="form-control" placeholder="Orgainization Name" value="">
-            <label for="name">Orgainization<span class="imp_star">*</span></label>
+            <label for="name">Orgainization</label>
               <img src="assets/img/icon/key.png" alt=""  class="input_icon">
           </div>
           <div class="formInputArea">
             <input type="text" name="credits" formControlName="credits" id="credits" tabindex="1" class="form-control" placeholder="Credits" value="">
-            <label for="name">Credits<span class="imp_star">*</span></label>
+            <label for="name">Credits</label>
             <img src="assets/img/icon/key.png" alt=""  class="input_icon">
         </div>
         <div class="formInputArea">
             <input type="text" name="senderId" formControlName="senderId" id="senderId" tabindex="1" class="form-control" placeholder="Sender id" value="">
-            <label for="name">senderId<span class="imp_star">*</span></label>
+            <label for="name">senderId</label>
             <img src="assets/img/icon/key.png" alt=""  class="input_icon">
         </div>
 

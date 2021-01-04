@@ -38,19 +38,19 @@
         <div class="formInputArea">
             <input placeholder="Email/Phone Number " formControlName="username" type="text" id="firstName">
             <label for="name">UserName<span class="imp_star">*</span></label>
-            <div *ngIf="loginSubmitted && logincontrol.username.errors" class="invalid-feedback">
-                <div *ngIf="logincontrol.username.errors.required">Username is required</div>
-            </div>
             <img src="assets/img/icon/user.png" alt="" class="input_icon">
+        </div>
+        <div *ngIf="loginSubmitted && logincontrol.username.errors" class="">
+            <div *ngIf="logincontrol.username.errors.required">Username is required</div>
         </div>
 
         <div class="formInputArea">
             <input placeholder="password" formControlName="password" type="password" id="password">
             <label for="name">Password<span class="imp_star">*</span></label>
             <img src="assets/img/icon/key.png" alt=""  class="input_icon">
-            <div *ngIf="loginSubmitted && logincontrol.password.errors" class="invalid-feedback">
-                <div *ngIf="logincontrol.password.errors.required">Password is required</div>
-            </div>
+        </div>
+        <div *ngIf="loginSubmitted && logincontrol.password.errors" class="">
+            <div *ngIf="logincontrol.password.errors.required">Password is required</div>
         </div>
         <div class="row">
             <div class="col-sm-6"><div class="check_m2"><label for="remember"><input type="checkbox" id="remember">Remember Me</label></div></div>
