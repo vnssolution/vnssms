@@ -88,7 +88,7 @@
                         <label for="username">Username</label>
                         </div>
                         <div *ngIf="submitted && f.username.errors" class="">
-                            <div *ngIf="f.username.errors.required">Username is required</div>
+                            <div *ngIf="f.username.errors.required" class="error_m1">Username is required</div>
                         </div>
                 </div>
 
@@ -97,20 +97,24 @@
                         <input placeholder="email"  type="text" formControlName="email" >
                         <label for="email">Email</label>
                         </div>
-                        <div *ngIf="submitted && f.email.errors" class="">
+                        <div *ngIf="submitted && f.email.errors" class="error_m1">
                             <div *ngIf="f.email.errors.required">Email is required</div>
                             <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                         </div>
                 </div>
 
 
-                <div class="col-sm-12">
-                    <div class="formInputArea ">
+                <div class="col-sm-12 ">
+                    <div class="formInputArea phone_num">
+                        <select name="" id="" class="sel_m3">
+                            <option value="+91">+91</option>
+                            <option value="+1">+1</option>
+                          </select>
                         <input placeholder="mobile" type="text" formControlName="mobile" >
                         <label for="mobile">Mobile</label>
                         </div>
 
-                        <div *ngIf="submitted && f.mobile.errors" class="">
+                        <div *ngIf="submitted && f.mobile.errors" class="error_m1">
                             <div *ngIf="f.mobile.errors.required">Phone is required</div>
                             <div *ngIf="f.mobile.errors.minlength">
                                 Phone must be at least 10 numbers.

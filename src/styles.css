@@ -813,7 +813,7 @@ table.dataTable tbody th, table.dataTable tbody td {
 .modal-header {
    
     background: #f3f3f3;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 @media(max-width:767px){
