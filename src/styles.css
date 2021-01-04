@@ -355,7 +355,7 @@ background: #a202cc !important;
     display: flex;
     flex-direction: column-reverse;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .formInputArea input {
@@ -791,6 +791,23 @@ table.dataTable thead .sorting
 }
 table.dataTable tbody th, table.dataTable tbody td {
     padding: 8px 20px !important;
+}
+.errors div,
+.error_m1{
+    color: #ff0000;
+    font-size: 12px;
+}
+.phone_num
+{
+    padding-left: 48px;
+}
+.sel_m3
+{
+ position:absolute;
+ left: 0px;
+ border: none;
+    border-bottom: solid 1px #ccc;
+    outline: none !important;
 }
 
 @media(max-width:767px){

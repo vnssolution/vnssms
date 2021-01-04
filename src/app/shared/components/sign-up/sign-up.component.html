@@ -36,7 +36,11 @@
               <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
           </div>
            
-            <div class="formInputArea">
+            <div class="formInputArea phone_num">
+              <select name="" id="" class="sel_m3">
+                <option value="+91">+91</option>
+                <option value="+1">+1</option>
+              </select>
                 <input type="text" name="mobile" formControlName="mobile" maxlength="10" id="mobile" tabindex="1" class="form-control" placeholder="Mobile" value="">
                 <label for="name">Phone Number<span class="imp_star">*</span></label>
               <img src="assets/img/icon/user.png" alt="" class="input_icon">

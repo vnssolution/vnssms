@@ -41,7 +41,7 @@
             <img src="assets/img/icon/user.png" alt="" class="input_icon">
         </div>
         <div *ngIf="loginSubmitted && logincontrol.username.errors" class="">
-            <div *ngIf="logincontrol.username.errors.required">Username is required</div>
+            <div *ngIf="logincontrol.username.errors.required" class="error_m1">Username is required</div>
         </div>
 
         <div class="formInputArea">
@@ -50,7 +50,7 @@
             <img src="assets/img/icon/key.png" alt=""  class="input_icon">
         </div>
         <div *ngIf="loginSubmitted && logincontrol.password.errors" class="">
-            <div *ngIf="logincontrol.password.errors.required">Password is required</div>
+            <div *ngIf="logincontrol.password.errors.required"  class="error_m1">Password is required</div>
         </div>
         <div class="row">
             <div class="col-sm-6"><div class="check_m2"><label for="remember"><input type="checkbox" id="remember">Remember Me</label></div></div>
